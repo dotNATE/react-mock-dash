@@ -1,10 +1,10 @@
-import React from "react";
+import DashboardHeader from "../../Molecules/DashboardHeader";
 
 const Dashboard = ():JSX.Element => {
 return (
     <div>
+        <DashboardHeader />
         <nav></nav>
-        <section></section>
         <main></main>
     </div>
 )
