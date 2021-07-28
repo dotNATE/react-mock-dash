@@ -2,6 +2,6 @@ type NavDealCounterProps = {
     count: Number
 }
 
-const NavDealCounter = ({ count }:NavDealCounterProps):JSX.Element => <span>{ count }</span>
+const NavDealCounter = ({ count }:NavDealCounterProps):JSX.Element => <div>{ count }</div>
 
 export default NavDealCounter;
