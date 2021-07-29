@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DashboardLayout from "../../Atoms/DashboardLayout";
 import NavNotificationCounter from "../../Atoms/NavNotificationCounter";
 import DealTable from "../../Organisms/DealTable";
@@ -6,12 +7,14 @@ import DashboardMain from "../../Organisms/DashboardMain";
 import Nav from "../../Organisms/Nav";
 import NavDealCounter from "./../../Atoms/NavDealCounter/index";
 import MapFilterButton from "../../Atoms/MapFilterButton";
+import SidebarTest from "./../../Atoms/SidebarTest/index";
 
 type DealData = {
-  address: String;
-  type: String;
-  profit: Number;
-  features: String[];
+  address: string;
+  type: string;
+  profit: number;
+  features: string[];
+  description: string;
 };
 
 const deals: DealData[] = [
@@ -21,6 +24,8 @@ const deals: DealData[] = [
     type: "Renovation",
     profit: 28,
     features: ["38 Bedrooms", "Garden"],
+    description:
+      "The Royal Albert Hall is a concert hall on the northern edge of South Kensington, London. One of the United Kingdom's most treasured and distinctive buildings, it is held in trust for the nation and managed by a registered charity. It can seat 5,272.",
   },
   {
     address:
@@ -28,6 +33,8 @@ const deals: DealData[] = [
     type: "Residential Flat Conversion",
     profit: -14,
     features: ["En-suite", "Colonial-era Ampitheatre"],
+    description:
+      "The Royal College of Music is a conservatoire established by royal charter in 1882, located in South Kensington, London, UK. It offers training from the undergraduate to the doctoral level in all aspects of Western Music including performance, composition, conducting, music theory and history.",
   },
   {
     address:
@@ -35,16 +42,40 @@ const deals: DealData[] = [
     type: "Commercial Flat Conversion",
     profit: 8.9,
     features: ["Spacious", "Train Station"],
+    description:
+      "The Natural History Museum in London is a natural history museum that exhibits a vast range of specimens from various segments of natural history. It is one of three major museums on Exhibition Road in South Kensington, the others being the Science Museum and the Victoria and Albert Museum.",
   },
   {
     address: "The Shard, 32 London Bridge St, London SE1 9SG",
     type: "Commercial Flat Conversion",
     profit: 43.2,
     features: ["Spacious", "Somewhat Decent Views"],
+    description:
+      "The Shard, also referred to as the Shard of Glass, Shard London Bridge and formerly London Bridge Tower, is a 72-storey skyscraper, designed by the Italian architect Renzo Piano, in Southwark, London, that forms part of the Shard Quarter development.",
   },
 ];
 
 const Dashboard = (): JSX.Element => {
+  const [open, setOpen] = useState(true);
+  const [selectedDeal, setSelectedDeal] = useState({
+    address: "",
+    type: "",
+    profit: 0,
+    features: [""],
+    description: "",
+  });
+
+  const clickHandler = ({
+    address,
+    type,
+    features,
+    profit,
+    description,
+  }: DealData): void => {
+    setSelectedDeal({ address, type, features, profit, description });
+    setOpen(true);
+  };
+
   return (
     <DashboardLayout>
       <Nav>
@@ -80,8 +111,9 @@ const Dashboard = (): JSX.Element => {
           </div>
         </section>
 
-        <DealTable data={deals} col={1} row={4} />
+        <DealTable data={deals} col={1} row={4} clicker={clickHandler} />
       </DashboardMain>
+      <SidebarTest open={open} setOpen={setOpen} deal={selectedDeal} />
     </DashboardLayout>
   );
 };

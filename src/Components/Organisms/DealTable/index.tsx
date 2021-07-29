@@ -4,16 +4,23 @@ type DealTableProps = {
   data: DealData[];
   col: number;
   row: number;
+  clicker: ({ address, type, profit, features, description }: DealData) => void;
 };
 
 type DealData = {
-  address: String;
-  type: String;
-  profit: Number;
-  features: String[];
+  address: string;
+  type: string;
+  profit: number;
+  features: string[];
+  description: string;
 };
 
-const DealTable = ({ data, col, row }: DealTableProps): JSX.Element => (
+const DealTable = ({
+  data,
+  col,
+  row,
+  clicker,
+}: DealTableProps): JSX.Element => (
   <ul
     className={`border-solid border-black border rounded-lg bg-white col-start-${col} col-span-8 row-start-${row} row-span-2 overflow-y-auto`}
   >
@@ -24,6 +31,8 @@ const DealTable = ({ data, col, row }: DealTableProps): JSX.Element => (
             type={deal.type}
             profit={deal.profit}
             features={deal.features}
+            description={deal.description}
+            clicker={clicker}
           />
         ))
       : null}
