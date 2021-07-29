@@ -3,11 +3,13 @@ import TableRow from "../../Atoms/TableElements/TableRow";
 
 const DealTableHeader = (): JSX.Element => {
   return (
-    <TableRow>
-      <TableHeader content="Name" />
-      <TableHeader content="Status" />
-      <TableHeader content="Profit" />
-    </TableRow>
+    <thead className="text-white bg-black h-16 rounded-t-lg">
+      <TableRow>
+        <TableHeader content="Name" className="w-16" />
+        <TableHeader content="Status" className="w-2" />
+        <TableHeader content="Profit" className="w-2" />
+      </TableRow>
+    </thead>
   );
 };
 
