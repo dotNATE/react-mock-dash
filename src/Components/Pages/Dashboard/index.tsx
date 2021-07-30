@@ -6,7 +6,6 @@ import NavLink from "../../Molecules/NavLink";
 import DashboardMain from "../../Organisms/DashboardMain";
 import Nav from "../../Organisms/Nav";
 import NavDealCounter from "./../../Atoms/NavDealCounter/index";
-import MapFilterButton from "../../Atoms/MapFilterButton";
 import SidebarTest from "./../../Atoms/SidebarTest/index";
 import {
   CalendarIcon,
@@ -22,6 +21,9 @@ import {
 } from "@heroicons/react/outline";
 import ProIcon from "../../Atoms/ProIcon";
 import DashboardWidgetWrapper from "../../Atoms/DashboardWidgetWrapper";
+import NewModelWidget from "../../Molecules/DashboardWidgets/NewModelWidget";
+import MapWidget from "../../Molecules/DashboardWidgets/MapWidget";
+import DashboardWidgetHeader from "../../Atoms/DashboardWidgetHeader";
 
 type DealData = {
   address: string;
@@ -92,6 +94,8 @@ const deals: DealData[] = [
     imageUrl: "images/deal_pics/rio_christ_vr_01_big.jpg",
   },
 ];
+
+const notifications: string[] = ["1", "Kingpin"];
 
 const Dashboard = (): JSX.Element => {
   const [open, setOpen] = useState(false);
@@ -191,29 +195,53 @@ const Dashboard = (): JSX.Element => {
       <DashboardMain>
         <DashboardWidgetWrapper
           colStart={1}
-          colSpan={8}
+          colSpan={6}
           rowStart={1}
           rowSpan={3}
         >
-          <div className="h-full flex flex-col bg-white rounded-lg overflow-hidden relative">
-            <iframe
-              className="w-full h-full"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.6705936157623!2d-0.17955468474452566!3d51.500912118999324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876055b21867ad1%3A0x5efe9cee35da2fd9!2sRoyal%20Albert%20Hall!5e0!3m2!1sen!2suk!4v1627552975374!5m2!1sen!2suk"
-              loading="lazy"
-              title="map"
-            ></iframe>
-            <div className="grid grid-rows-3 gap-2 absolute bottom-6 left-4 md:grid-cols-3 md:grid-rows-1">
-              <MapFilterButton content="Complete" />
-              <MapFilterButton content="Pending" />
-              <MapFilterButton content="All Time" />
-            </div>
+          <MapWidget />
+        </DashboardWidgetWrapper>
+
+        <DashboardWidgetWrapper
+          colStart={7}
+          colSpan={2}
+          rowStart={1}
+          rowSpan={3}
+        >
+          <DashboardWidgetHeader content="Notifications" />
+
+          <div className="pt-12">
+            {notifications.length > 0 ? (
+              notifications.map((notification) => (
+                <div className="grid grid-cols-4 items-center w-full h-12 pl-4 bg-red-50">
+                  <ExclamationIcon className="h-6 w-6 mr-3 text-red-600 col-start-1" />
+                  <div className="">{notification}</div>
+                </div>
+              ))
+            ) : (
+              <div className="flex justify-center items-center h-full bg-blue-50 rounded-lg">
+                <div className="w-3/5 text-center text-gray-600">
+                  You have no new notifications
+                </div>
+              </div>
+            )}
           </div>
         </DashboardWidgetWrapper>
+
         <DashboardWidgetWrapper
           colStart={1}
-          colSpan={8}
+          colSpan={2}
           rowStart={4}
-          rowSpan={2}
+          rowSpan={3}
+        >
+          <NewModelWidget />
+        </DashboardWidgetWrapper>
+
+        <DashboardWidgetWrapper
+          colStart={3}
+          colSpan={6}
+          rowStart={4}
+          rowSpan={3}
           overflow={true}
         >
           <DealTable data={deals} clicker={clickHandler} />

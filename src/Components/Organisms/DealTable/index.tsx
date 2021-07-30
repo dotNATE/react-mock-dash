@@ -22,7 +22,7 @@ type DealData = {
 };
 
 const DealTable = ({ data, clicker }: DealTableProps): JSX.Element => (
-  <ul className={`bg-white overflow-y-auto`}>
+  <ul>
     {Array.isArray(data)
       ? data.map((deal) => (
           <DealTableRow

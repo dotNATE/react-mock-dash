@@ -27,7 +27,7 @@ const DealTableRow = ({
   clicker,
 }: DealTableRowProps): JSX.Element => (
   <li
-    className="w-full cursor-pointer"
+    className="w-full cursor-pointer group transition"
     onClick={() =>
       clicker({ address, type, profit, features, description, imageUrl })
     }
@@ -40,7 +40,7 @@ const DealTableRow = ({
         }
       >
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-indigo-600 truncate">
+          <p className="text-sm font-medium truncate group-hover:text-indigo-600">
             {address}
           </p>
           <div className="ml-2 flex-shrink-0 flex">
