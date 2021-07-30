@@ -3,8 +3,8 @@ type NavDealCounterProps = {
 };
 
 const NavDealCounter = ({ count }: NavDealCounterProps): JSX.Element => (
-  <div className="flex justify-center items-center">
-    <div className="text-2xl py-3 text-center">{count}</div>
+  <div className="text-center w-6 h-6 leading-snug border-2 border-gray-400">
+    {count}
   </div>
 );
 

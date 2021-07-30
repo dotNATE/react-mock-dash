@@ -6,8 +6,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ["even"],
+      backgroundColor: ["even", "odd"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-debug-screens")],
 };

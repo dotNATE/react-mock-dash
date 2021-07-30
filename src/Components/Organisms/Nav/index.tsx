@@ -6,11 +6,11 @@ type NavProps = {
 
 const Nav = ({ children }: NavProps): JSX.Element => {
   return (
-    <nav className="flex flex-col w-64 bg-gray-400 border-r-2 border-black">
-      <div className=" h-16 flex justify-center items-center">
+    <nav className="flex flex-col w-72 border-black border-r-2">
+      <div className="h-16 flex justify-center items-center">
         <SqftLogo />
       </div>
-      <div className="flex flex-col justify-between h-full">{children}</div>
+      <div className="flex flex-col justify-between p-3 h-full">{children}</div>
     </nav>
   );
 };

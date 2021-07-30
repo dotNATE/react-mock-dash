@@ -8,6 +8,16 @@ import Nav from "../../Organisms/Nav";
 import NavDealCounter from "./../../Atoms/NavDealCounter/index";
 import MapFilterButton from "../../Atoms/MapFilterButton";
 import SidebarTest from "./../../Atoms/SidebarTest/index";
+import {
+  CalendarIcon,
+  ChartBarIcon,
+  CogIcon,
+  FolderIcon,
+  InboxIcon,
+  LogoutIcon,
+  SparklesIcon,
+  StarIcon,
+} from "@heroicons/react/outline";
 
 type DealData = {
   address: string;
@@ -15,6 +25,7 @@ type DealData = {
   profit: number;
   features: string[];
   description: string;
+  imageUrl: string;
 };
 
 const deals: DealData[] = [
@@ -26,6 +37,7 @@ const deals: DealData[] = [
     features: ["38 Bedrooms", "Garden"],
     description:
       "The Royal Albert Hall is a concert hall on the northern edge of South Kensington, London. One of the United Kingdom's most treasured and distinctive buildings, it is held in trust for the nation and managed by a registered charity. It can seat 5,272.",
+    imageUrl: "images/deal_pics/royal_albert.jpg",
   },
   {
     address:
@@ -35,6 +47,7 @@ const deals: DealData[] = [
     features: ["En-suite", "Colonial-era Ampitheatre"],
     description:
       "The Royal College of Music is a conservatoire established by royal charter in 1882, located in South Kensington, London, UK. It offers training from the undergraduate to the doctoral level in all aspects of Western Music including performance, composition, conducting, music theory and history.",
+    imageUrl: "images/deal_pics/royal_college.jpg",
   },
   {
     address:
@@ -44,6 +57,7 @@ const deals: DealData[] = [
     features: ["Spacious", "Train Station"],
     description:
       "The Natural History Museum in London is a natural history museum that exhibits a vast range of specimens from various segments of natural history. It is one of three major museums on Exhibition Road in South Kensington, the others being the Science Museum and the Victoria and Albert Museum.",
+    imageUrl: "images/deal_pics/natural-history-museum-london_adobe-stock.jpg",
   },
   {
     address: "The Shard, 32 London Bridge St, London SE1 9SG",
@@ -52,17 +66,38 @@ const deals: DealData[] = [
     features: ["Spacious", "Somewhat Decent Views"],
     description:
       "The Shard, also referred to as the Shard of Glass, Shard London Bridge and formerly London Bridge Tower, is a 72-storey skyscraper, designed by the Italian architect Renzo Piano, in Southwark, London, that forms part of the Shard Quarter development.",
+    imageUrl: "images/deal_pics/The-Shard-London.jpg",
+  },
+  {
+    address: "2 Lincoln Memorial Cir NW, Washington, DC 20002, United States",
+    type: "Renovation",
+    profit: -14.7,
+    features: ["Imposing", "Sprawling Front Garden"],
+    description:
+      "The Lincoln Memorial is a US national memorial built to honor the 16th president of the United States, Abraham Lincoln. It is on the western end of the National Mall in Washington, D.C., across from the Washington Monument, and is in the form of a neoclassical temple. The memorial's architect was Henry Bacon.",
+    imageUrl: "images/deal_pics/90E5EB32-BB00-EA88-B133ACDDF7398F4C.jpg",
+  },
+  {
+    address:
+      "Parque Nacional da Tijuca - Alto da Boa Vista, Rio de Janeiro - RJ, Brazil",
+    type: "Renovation",
+    profit: 43.2,
+    features: ["Monumental", "Religious Icon", "Somewhat Decent Views"],
+    description:
+      "Christ the Redeemer is an Art Deco statue of Jesus Christ in Rio de Janeiro, Brazil, created by French sculptor Paul Landowski and built by Brazilian engineer Heitor da Silva Costa, in collaboration with French engineer Albert Caquot. Romanian sculptor Gheorghe Leonida fashioned the face.",
+    imageUrl: "images/deal_pics/rio_christ_vr_01_big.jpg",
   },
 ];
 
 const Dashboard = (): JSX.Element => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [selectedDeal, setSelectedDeal] = useState({
     address: "",
     type: "",
     profit: 0,
     features: [""],
     description: "",
+    imageUrl: "",
   });
 
   const clickHandler = ({
@@ -71,8 +106,9 @@ const Dashboard = (): JSX.Element => {
     features,
     profit,
     description,
+    imageUrl,
   }: DealData): void => {
-    setSelectedDeal({ address, type, features, profit, description });
+    setSelectedDeal({ address, type, features, profit, description, imageUrl });
     setOpen(true);
   };
 
@@ -80,16 +116,58 @@ const Dashboard = (): JSX.Element => {
     <DashboardLayout>
       <Nav>
         <section>
-          <NavLink label="My Deals">
+          <NavLink>
+            <div className="flex">
+              <StarIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">My Deals</h2>
+            </div>
             <NavDealCounter count={deals.length} />
           </NavLink>
-          <NavLink label="Notifications">
+          <NavLink>
+            <div className="flex">
+              <SparklesIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Notifications</h2>
+            </div>
             <NavNotificationCounter count={4} />
+          </NavLink>
+          <NavLink>
+            <div className="flex">
+              <FolderIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Projects</h2>
+            </div>
+          </NavLink>
+          <NavLink>
+            <div className="flex">
+              <CalendarIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Calendar</h2>
+            </div>
+          </NavLink>
+          <NavLink>
+            <div className="flex">
+              <InboxIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Documents</h2>
+            </div>
+          </NavLink>
+          <NavLink>
+            <div className="flex">
+              <ChartBarIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Reports</h2>
+            </div>
           </NavLink>
         </section>
         <section>
-          <NavLink label="Account" />
-          <NavLink label="Log Out" />
+          <NavLink>
+            <div className="flex">
+              <CogIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Account</h2>
+            </div>
+          </NavLink>
+          <NavLink>
+            <div className="flex">
+              <LogoutIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Log Out</h2>
+            </div>
+          </NavLink>
         </section>
       </Nav>
 

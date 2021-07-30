@@ -4,6 +4,7 @@ type DealData = {
   profit: number;
   features: string[];
   description: string;
+  imageUrl: string;
 };
 
 type DealTableRowProps = {
@@ -12,6 +13,7 @@ type DealTableRowProps = {
   features: string[];
   profit: number;
   description: string;
+  imageUrl: string;
   clicker: ({ address, type, profit, features, description }: DealData) => void;
 };
 
@@ -21,11 +23,14 @@ const DealTableRow = ({
   profit,
   features,
   description,
+  imageUrl,
   clicker,
 }: DealTableRowProps): JSX.Element => (
   <li
     className="w-full"
-    onClick={() => clicker({ address, type, profit, features, description })}
+    onClick={() =>
+      clicker({ address, type, profit, features, description, imageUrl })
+    }
   >
     <div className="block w-auto hover:bg-gray-50">
       <div

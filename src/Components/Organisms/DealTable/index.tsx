@@ -4,7 +4,14 @@ type DealTableProps = {
   data: DealData[];
   col: number;
   row: number;
-  clicker: ({ address, type, profit, features, description }: DealData) => void;
+  clicker: ({
+    address,
+    type,
+    profit,
+    features,
+    description,
+    imageUrl,
+  }: DealData) => void;
 };
 
 type DealData = {
@@ -13,6 +20,7 @@ type DealData = {
   profit: number;
   features: string[];
   description: string;
+  imageUrl: string;
 };
 
 const DealTable = ({
@@ -22,7 +30,7 @@ const DealTable = ({
   clicker,
 }: DealTableProps): JSX.Element => (
   <ul
-    className={`border-solid border-black border rounded-lg bg-white col-start-${col} col-span-8 row-start-${row} row-span-2 overflow-y-auto`}
+    className={`border-solid border-black border rounded-lg bg-white col-start-${col} col-span-8 row-start-${row} row-span-3 overflow-y-auto`}
   >
     {Array.isArray(data)
       ? data.map((deal) => (
@@ -32,6 +40,7 @@ const DealTable = ({
             profit={deal.profit}
             features={deal.features}
             description={deal.description}
+            imageUrl={deal.imageUrl}
             clicker={clicker}
           />
         ))

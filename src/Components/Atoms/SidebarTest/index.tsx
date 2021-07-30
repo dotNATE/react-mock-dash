@@ -3,11 +3,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 
 type DealData = {
-  address: String;
-  type: String;
-  profit: Number;
-  features: String[];
+  address: string;
+  type: string;
+  profit: number;
+  features: string[];
   description: string;
+  imageUrl: string;
 };
 
 type SidebarTestProps = {
@@ -70,7 +71,7 @@ const SidebarTest = ({
                         <div className="relative h-40 sm:h-56">
                           <img
                             className="absolute h-full w-full object-cover"
-                            src="https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&h=600&q=80"
+                            src={deal.imageUrl}
                             alt=""
                           />
                         </div>

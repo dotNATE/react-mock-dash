@@ -1,12 +1,10 @@
 type NavLinkProps = {
-  label: String;
-  children?: JSX.Element;
+  children?: JSX.Element | JSX.Element[];
 };
 
-const NavLink = ({ label, children }: NavLinkProps): JSX.Element => {
+const NavLink = ({ children }: NavLinkProps): JSX.Element => {
   return (
-    <div className="grid grid-cols-4 pl-4 h-16 hover:bg-gray-200 cursor-pointer">
-      <h2 className="col-start-1 col-end-4 text-2xl py-3">{label}</h2>
+    <div className="flex items-center px-2 py-2 text-base font-medium rounded-md justify-between h-10 mb-2 hover:bg-yellow-300 cursor-pointer">
       {children}
     </div>
   );
