@@ -30,7 +30,7 @@ const DealTable = ({
   clicker,
 }: DealTableProps): JSX.Element => (
   <ul
-    className={`border-solid border-black border rounded-lg bg-white col-start-${col} col-span-8 row-start-${row} row-span-3 overflow-y-auto`}
+    className={`border-solid border-black border rounded-lg bg-white col-start-${col} col-span-8 row-start-${row} row-span-3 overflow-y-auto shadow-2xl`}
   >
     {Array.isArray(data)
       ? data.map((deal) => (

@@ -12,12 +12,15 @@ import {
   CalendarIcon,
   ChartBarIcon,
   CogIcon,
+  ExclamationIcon,
   FolderIcon,
   InboxIcon,
   LogoutIcon,
-  SparklesIcon,
+  PlusIcon,
   StarIcon,
+  ViewGridIcon,
 } from "@heroicons/react/outline";
+import ProIcon from "../../Atoms/ProIcon";
 
 type DealData = {
   address: string;
@@ -118,6 +121,18 @@ const Dashboard = (): JSX.Element => {
         <section>
           <NavLink>
             <div className="flex">
+              <ViewGridIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Dashboard</h2>
+            </div>
+          </NavLink>
+          <NavLink>
+            <div className="flex">
+              <PlusIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">New Deal Model</h2>
+            </div>
+          </NavLink>
+          <NavLink>
+            <div className="flex">
               <StarIcon className="h-6 w-6 mr-3" />
               <h2 className="col-start-1 col-end-4">My Deals</h2>
             </div>
@@ -125,7 +140,7 @@ const Dashboard = (): JSX.Element => {
           </NavLink>
           <NavLink>
             <div className="flex">
-              <SparklesIcon className="h-6 w-6 mr-3" />
+              <ExclamationIcon className="h-6 w-6 mr-3" />
               <h2 className="col-start-1 col-end-4">Notifications</h2>
             </div>
             <NavNotificationCounter count={4} />
@@ -153,9 +168,10 @@ const Dashboard = (): JSX.Element => {
               <ChartBarIcon className="h-6 w-6 mr-3" />
               <h2 className="col-start-1 col-end-4">Reports</h2>
             </div>
+            <ProIcon />
           </NavLink>
         </section>
-        <section>
+        <section className="border-t-2 border-gray-200 pt-4">
           <NavLink>
             <div className="flex">
               <CogIcon className="h-6 w-6 mr-3" />

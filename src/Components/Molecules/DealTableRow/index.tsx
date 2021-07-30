@@ -27,12 +27,12 @@ const DealTableRow = ({
   clicker,
 }: DealTableRowProps): JSX.Element => (
   <li
-    className="w-full"
+    className="w-full cursor-pointer"
     onClick={() =>
       clicker({ address, type, profit, features, description, imageUrl })
     }
   >
-    <div className="block w-auto hover:bg-gray-50">
+    <div className="block w-auto hover:bg-gray-100">
       <div
         className={
           "px-4 py-4 sm:px-6 border-l-8 " +
