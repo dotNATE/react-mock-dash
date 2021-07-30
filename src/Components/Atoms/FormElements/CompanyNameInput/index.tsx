@@ -1,6 +1,6 @@
 type userInput = {
   company: string;
-  test: string;
+  purchasePrice: number;
 };
 
 type CompanyNameInputProps = {
@@ -25,7 +25,6 @@ const CompanyNameInput = ({
         type="text"
         id="company"
         name="company"
-        placeholder="Enter Company Name..."
         onChange={changeHandler}
         value={formState.company}
       />
