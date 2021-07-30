@@ -1,25 +1,10 @@
 import { useState } from "react";
 import DashboardLayout from "../../Atoms/DashboardLayout";
-import NavNotificationCounter from "../../Atoms/NavNotificationCounter";
 import DealTable from "../../Organisms/DealTable";
-import NavLink from "../../Molecules/NavLink";
 import DashboardMain from "../../Organisms/DashboardMain";
 import Nav from "../../Organisms/Nav";
-import NavDealCounter from "./../../Atoms/NavDealCounter/index";
 import SidebarTest from "./../../Atoms/SidebarTest/index";
-import {
-  CalendarIcon,
-  ChartBarIcon,
-  CogIcon,
-  ExclamationIcon,
-  FolderIcon,
-  InboxIcon,
-  LogoutIcon,
-  PlusIcon,
-  StarIcon,
-  ViewGridIcon,
-} from "@heroicons/react/outline";
-import ProIcon from "../../Atoms/ProIcon";
+import { ExclamationIcon } from "@heroicons/react/outline";
 import DashboardWidgetWrapper from "../../Atoms/DashboardWidgetWrapper";
 import NewModelWidget from "../../Molecules/DashboardWidgets/NewModelWidget";
 import MapWidget from "../../Molecules/DashboardWidgets/MapWidget";
@@ -122,75 +107,7 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <DashboardLayout>
-      <Nav>
-        <section>
-          <NavLink>
-            <div className="flex">
-              <ViewGridIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Dashboard</h2>
-            </div>
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <PlusIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">New Deal Model</h2>
-            </div>
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <StarIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">My Deals</h2>
-            </div>
-            <NavDealCounter count={deals.length} />
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <ExclamationIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Notifications</h2>
-            </div>
-            <NavNotificationCounter count={4} />
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <FolderIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Projects</h2>
-            </div>
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <CalendarIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Calendar</h2>
-            </div>
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <InboxIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Documents</h2>
-            </div>
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <ChartBarIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Reports</h2>
-            </div>
-            <ProIcon />
-          </NavLink>
-        </section>
-        <section className="border-t-2 border-gray-200 pt-4">
-          <NavLink>
-            <div className="flex">
-              <CogIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Account</h2>
-            </div>
-          </NavLink>
-          <NavLink>
-            <div className="flex">
-              <LogoutIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Log Out</h2>
-            </div>
-          </NavLink>
-        </section>
-      </Nav>
+      <Nav />
 
       <DashboardMain>
         <DashboardWidgetWrapper

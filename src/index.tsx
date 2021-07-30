@@ -1,11 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Dashboard from './Components/Pages/Dashboard';
-import './index.css';
+import ReactDOM from "react-dom";
+import "./index.css";
+import Routing from "./Components/Utilities/Routing/index";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Dashboard />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<Routing />, document.getElementById("root"));
