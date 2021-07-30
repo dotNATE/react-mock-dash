@@ -32,10 +32,10 @@ const DealTableRow = ({
       clicker({ address, type, profit, features, description, imageUrl })
     }
   >
-    <div className="block w-auto hover:bg-gray-100">
+    <div className="block hover:bg-gray-100">
       <div
         className={
-          "px-4 py-4 sm:px-6 border-l-8 " +
+          "px-4 py-4 border-l-8 " +
           (profit > 0 ? "border-green-500" : "border-red-500")
         }
       >

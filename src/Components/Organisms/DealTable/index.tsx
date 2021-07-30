@@ -2,8 +2,6 @@ import DealTableRow from "./../../Molecules/DealTableRow/index";
 
 type DealTableProps = {
   data: DealData[];
-  col: number;
-  row: number;
   clicker: ({
     address,
     type,
@@ -23,15 +21,8 @@ type DealData = {
   imageUrl: string;
 };
 
-const DealTable = ({
-  data,
-  col,
-  row,
-  clicker,
-}: DealTableProps): JSX.Element => (
-  <ul
-    className={`border-solid border-black border rounded-lg bg-white col-start-${col} col-span-8 row-start-${row} row-span-3 overflow-y-auto shadow-2xl`}
-  >
+const DealTable = ({ data, clicker }: DealTableProps): JSX.Element => (
+  <ul className={`bg-white overflow-y-auto`}>
     {Array.isArray(data)
       ? data.map((deal) => (
           <DealTableRow
