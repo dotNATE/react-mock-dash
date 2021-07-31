@@ -46,11 +46,11 @@ const ModelDeal = (): JSX.Element => {
     <DashboardLayout>
       <Nav />
       <FormMain currentStep={currentStep}>
-        <section className="h-screen w-full p-4 grid grid-cols-1 grid-rows-1 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative">
+        <section className="h-screen w-full grid grid-cols-1 grid-rows-1 relative">
           <form
             action="/"
             onSubmit={handleSumbit}
-            className="grid grid-cols-7 grid-rows-6 items-center "
+            className="grid grid-cols-7 grid-rows-6 items-center backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700"
           >
             <CompanyNameInput
               formState={userInput}
@@ -63,27 +63,27 @@ const ModelDeal = (): JSX.Element => {
               currentStep={currentStep}
             />
           </form>
+          <div className="flex justify-around items-center absolute bottom-10 w-full">
+            <button
+              onClick={decrementCurrentStep}
+              className="bg-blue-600 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+            >
+              Back
+            </button>
+            <input
+              type="submit"
+              value="Submit"
+              onSubmit={handleSumbit}
+              className="h-14 w-28 rounded-md shadow-md cursor-pointer font-medium"
+            />
+            <button
+              onClick={incrementCurrentStep}
+              className="bg-blue-600 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+            >
+              Next
+            </button>
+          </div>
         </section>
-        <div className="flex justify-around items-center fixed bottom-10 w-4/5">
-          <button
-            onClick={decrementCurrentStep}
-            className="bg-blue-600 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
-          >
-            Back
-          </button>
-          <input
-            type="submit"
-            value="Submit"
-            onSubmit={handleSumbit}
-            className="h-14 w-28 rounded-md shadow-md cursor-pointer font-medium"
-          />
-          <button
-            onClick={incrementCurrentStep}
-            className="bg-blue-600 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
-          >
-            Next
-          </button>
-        </div>
       </FormMain>
     </DashboardLayout>
   );
