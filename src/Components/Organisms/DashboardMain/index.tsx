@@ -15,7 +15,7 @@ const DashboardMain = ({ children }: DashboardMainProps): JSX.Element => {
           placeholder="Search..."
         />
       </div>
-      <section className="grid grid-cols-8 grid-rows-6 gap-5 bg-gray-400 p-4 h-full w-full">
+      <section className="grid grid-cols-8 grid-rows-6 gap-5 bg-gray-200 p-4 h-full w-full">
         {children}
       </section>
     </div>

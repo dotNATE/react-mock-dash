@@ -1,13 +1,16 @@
 type FormMainProps = {
   children: JSX.Element | JSX.Element[];
+  currentStep: number;
 };
 
-const FormMain = ({ children }: FormMainProps): JSX.Element => {
+const FormMain = ({ children, currentStep }: FormMainProps): JSX.Element => {
+  let bgUrl;
+
+  if (currentStep === 1) bgUrl = "bg-model-wiz-1 bg-cover";
+
   return (
-    <div className="max-h-full w-full flex flex-col overflow-y-auto">
-      <section className="grid grid-cols-8 grid-rows-6 gap-5 bg-gray-400 p-4 h-full w-full">
-        {children}
-      </section>
+    <div className={"h-full w-full " + bgUrl}>
+      <div className="bg-black bg-opacity-40">{children}</div>
     </div>
   );
 };

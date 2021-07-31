@@ -17,7 +17,7 @@ const DashboardWidgetWrapper = ({
 }: DashboardWidgetWrapperProps): JSX.Element => {
   return (
     <div
-      className={`relative border border-black rounded-lg bg-white col-start-${colStart} col-span-${colSpan} row-start-${rowStart} row-span-${rowSpan} ${
+      className={`relative shadow-md rounded-lg bg-white col-start-${colStart} col-span-${colSpan} row-start-${rowStart} row-span-${rowSpan} ${
         overflow ? "overflow-y-auto" : null
       }`}
     >

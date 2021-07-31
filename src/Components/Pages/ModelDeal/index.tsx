@@ -20,14 +20,16 @@ const ModelDeal = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    let temp = {
+    const updatedUserInput = {
       ...userInput,
       [e.target.name]: e.target.value,
     };
-    setUserInput(temp);
+    setUserInput(updatedUserInput);
   };
 
-  const handleSumbit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSumbit = (
+    e: FormEvent<HTMLFormElement | HTMLInputElement>
+  ): void => {
     e.preventDefault();
     console.log(userInput);
   };
@@ -43,22 +45,30 @@ const ModelDeal = (): JSX.Element => {
   return (
     <DashboardLayout>
       <Nav />
-      <FormMain>
-        <form action="/" onSubmit={handleSumbit}>
-          <CompanyNameInput
-            formState={userInput}
-            changeHandler={handleChange}
-            currentStep={currentStep}
-          />
-          <ModelDealStep2
-            formState={userInput}
-            changeHandler={handleChange}
-            currentStep={currentStep}
-          />
-          <input type="submit" value="Submit" />
-        </form>
-        <button onClick={decrementCurrentStep}>back</button>
-        <button onClick={incrementCurrentStep}>next</button>
+      <FormMain currentStep={currentStep}>
+        <section className="h-screen w-full p-4 grid grid-cols-1 grid-rows-1 backdrop-filter backdrop-blur-sm focus-within:backdrop-blur transition duration-500">
+          <form
+            action="/"
+            onSubmit={handleSumbit}
+            className="grid grid-cols-5 grid-rows-4 items-center "
+          >
+            <CompanyNameInput
+              formState={userInput}
+              changeHandler={handleChange}
+              currentStep={currentStep}
+            />
+            <ModelDealStep2
+              formState={userInput}
+              changeHandler={handleChange}
+              currentStep={currentStep}
+            />
+            <div className="col-start-3 row-start-4">
+              <button onClick={decrementCurrentStep}>back</button>
+              <input type="submit" value="Submit" onSubmit={handleSumbit} />
+              <button onClick={incrementCurrentStep}>next</button>
+            </div>
+          </form>
+        </section>
       </FormMain>
     </DashboardLayout>
   );
