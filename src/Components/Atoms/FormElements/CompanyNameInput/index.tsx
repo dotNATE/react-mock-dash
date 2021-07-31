@@ -28,7 +28,7 @@ const CompanyNameInput = ({
   return (
     <label
       htmlFor="company"
-      className="col-start-2 col-span-5 row-start-3 row-span-2 h-24 grid grid-col-3 grid-row-3 text-gray-50 opacity-80 font-medium"
+      className="grid grid-col-3 grid-row-3 text-gray-50 opacity-80 font-medium"
     >
       Company Name
       <input

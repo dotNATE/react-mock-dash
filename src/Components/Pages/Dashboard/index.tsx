@@ -2,7 +2,6 @@ import { useState } from "react";
 import DashboardLayout from "../../Atoms/DashboardLayout";
 import DealTable from "../../Organisms/DealTable";
 import DashboardMain from "../../Organisms/DashboardMain";
-import Nav from "../../Organisms/Nav";
 import SidebarTest from "./../../Atoms/SidebarTest/index";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import DashboardWidgetWrapper from "../../Atoms/DashboardWidgetWrapper";
@@ -107,8 +106,6 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <DashboardLayout>
-      <Nav />
-
       <DashboardMain>
         <DashboardWidgetWrapper
           colStart={1}

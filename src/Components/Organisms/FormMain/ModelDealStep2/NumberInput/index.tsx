@@ -1,33 +1,24 @@
 type userInput = {
   [index: string]: string | number;
-  company: string;
-  purchasePrice: number;
-  acquisitionCosts: number;
-  buildCost: number;
-  professionalFees: number;
-  localAuthorityCosts: number;
-  disposalCosts: number;
-  gDVResidential: number;
-  gDVCommercial: number;
 };
 
-type Step2NumberInputProps = {
+type NumberInputProps = {
   name: string;
   label: string;
   changeHandler: any;
   formState: userInput;
 };
 
-const Step2NumberInput = ({
+const NumberInput = ({
   name,
   changeHandler,
   formState,
   label,
-}: Step2NumberInputProps): JSX.Element => {
+}: NumberInputProps): JSX.Element => {
   return (
     <label
       htmlFor={name}
-      className="w-5/6 mx-auto grid grid-col-3 grid-row-3 text-gray-50 opacity-80 font-medium"
+      className="w-5/6 mx-auto grid grid-col-3 grid-row-3 text-gray-50 opacity-60 font-medium focus-within:opacity-90 transition duration-300"
     >
       {label}
       <input
@@ -42,4 +33,4 @@ const Step2NumberInput = ({
   );
 };
 
-export default Step2NumberInput;
+export default NumberInput;

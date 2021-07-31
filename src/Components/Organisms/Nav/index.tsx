@@ -16,7 +16,7 @@ import NavBarLink from "../../Molecules/NavLink";
 
 const Nav = (): JSX.Element => {
   return (
-    <nav className="flex flex-col w-80 shadow-lg">
+    <nav className="flex flex-col w-80 shadow-lg pt-4">
       <div className="h-16 flex justify-center items-center">
         <SqftLogo />
       </div>
