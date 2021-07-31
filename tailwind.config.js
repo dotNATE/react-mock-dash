@@ -6,6 +6,10 @@ module.exports = {
       backgroundImage: (theme) => ({
         "model-wiz-1":
           "url('images/form_bgs/dan-burton-x6EokdaNzJc-unsplash.jpg')",
+        "model-wiz-2":
+          "url('images/form_bgs/r-architecture-0tKCSyLXqQM-unsplash.jpg')",
+        "model-wiz-3":
+          "url('images/form_bgs/mikita-yo-iet7azddZz0-unsplash.jpg')",
       }),
     },
   },
@@ -13,6 +17,7 @@ module.exports = {
     extend: {
       backgroundColor: ["active", "even", "odd"],
       backdropBlur: ["focus-within"],
+      backdropGrayscale: ["focus-within"],
     },
   },
   plugins: [require("tailwindcss-debug-screens")],

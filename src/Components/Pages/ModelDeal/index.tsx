@@ -46,11 +46,11 @@ const ModelDeal = (): JSX.Element => {
     <DashboardLayout>
       <Nav />
       <FormMain currentStep={currentStep}>
-        <section className="h-screen w-full p-4 grid grid-cols-1 grid-rows-1 backdrop-filter backdrop-blur-sm focus-within:backdrop-blur transition duration-500">
+        <section className="h-screen w-full p-4 grid grid-cols-1 grid-rows-1 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative">
           <form
             action="/"
             onSubmit={handleSumbit}
-            className="grid grid-cols-5 grid-rows-4 items-center "
+            className="grid grid-cols-7 grid-rows-6 items-center "
           >
             <CompanyNameInput
               formState={userInput}
@@ -62,13 +62,28 @@ const ModelDeal = (): JSX.Element => {
               changeHandler={handleChange}
               currentStep={currentStep}
             />
-            <div className="col-start-3 row-start-4">
-              <button onClick={decrementCurrentStep}>back</button>
-              <input type="submit" value="Submit" onSubmit={handleSumbit} />
-              <button onClick={incrementCurrentStep}>next</button>
-            </div>
           </form>
         </section>
+        <div className="flex justify-around items-center fixed bottom-10 w-4/5">
+          <button
+            onClick={decrementCurrentStep}
+            className="bg-blue-600 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+          >
+            Back
+          </button>
+          <input
+            type="submit"
+            value="Submit"
+            onSubmit={handleSumbit}
+            className="h-14 w-28 rounded-md shadow-md cursor-pointer font-medium"
+          />
+          <button
+            onClick={incrementCurrentStep}
+            className="bg-blue-600 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+          >
+            Next
+          </button>
+        </div>
       </FormMain>
     </DashboardLayout>
   );

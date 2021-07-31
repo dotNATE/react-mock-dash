@@ -28,7 +28,7 @@ const CompanyNameInput = ({
   return (
     <label
       htmlFor="company"
-      className="col-start-2 col-span-3 row-start-2 row-span-2 h-24 grid grid-col-3 grid-row-3 text-gray-50 opacity-80"
+      className="col-start-2 col-span-5 row-start-3 row-span-2 h-24 grid grid-col-3 grid-row-3 text-gray-50 opacity-80 font-medium"
     >
       Company Name
       <input
@@ -37,7 +37,7 @@ const CompanyNameInput = ({
         name="company"
         onChange={changeHandler}
         value={formState.company}
-        className="bg-transparent border-b-4 border-gray-50 p-4 rounded-md "
+        className="bg-transparent border-b-4 border-gray-50 p-4 rounded-md"
       />
     </label>
   );

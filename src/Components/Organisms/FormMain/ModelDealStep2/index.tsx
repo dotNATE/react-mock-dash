@@ -1,3 +1,5 @@
+import Step2NumberInput from "./Step2NumberInput";
+
 type userInput = {
   company: string;
   purchasePrice: number;
@@ -25,94 +27,61 @@ const ModelDealStep2 = ({
     return null;
   }
   return (
-    <div>
-      <label htmlFor="purchasePrice">
-        Purchase Price
-        <input
-          type="number"
-          id="purchasePrice"
+    <div className="col-start-1 col-span-7 row-start-2 row-span-4 h-full grid grid-cols-6 grid-rows-4 py-4">
+      <div className="flex flex-col justify-between col-start-2 col-span-2 row-span-4">
+        <Step2NumberInput
           name="purchasePrice"
-          onChange={changeHandler}
-          value={formState.purchasePrice}
+          label="Purchase Price"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
 
-      <label htmlFor="acquisitionCosts">
-        Acquisition Costs
-        <input
-          type="number"
-          id="acquisitionCosts"
+        <Step2NumberInput
           name="acquisitionCosts"
-          onChange={changeHandler}
-          value={formState.acquisitionCosts}
+          label="Acquisition Costs"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
-
-      <label htmlFor="buildCost">
-        Build Cost
-        <input
-          type="number"
-          id="buildCost"
+        <Step2NumberInput
           name="buildCost"
-          onChange={changeHandler}
-          value={formState.buildCost}
+          label="Build Cost"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
 
-      <label htmlFor="professionalFees">
-        ProfessionalFees
-        <input
-          type="number"
-          id="professionalFees"
+        <Step2NumberInput
           name="professionalFees"
-          onChange={changeHandler}
-          value={formState.professionalFees}
+          label="Professional Fees"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
-
-      <label htmlFor="localAuthorityCosts">
-        Local Authority Costs
-        <input
-          type="number"
-          id="localAuthorityCosts"
+      </div>
+      <div className="flex flex-col justify-between col-start-4 col-span-2 row-span-4">
+        <Step2NumberInput
           name="localAuthorityCosts"
-          onChange={changeHandler}
-          value={formState.localAuthorityCosts}
+          label="Local Authority Costs"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
-
-      <label htmlFor="disposalCosts">
-        Disposal Costs
-        <input
-          type="number"
-          id="disposalCosts"
+        <Step2NumberInput
           name="disposalCosts"
-          onChange={changeHandler}
-          value={formState.disposalCosts}
+          label="Disposal Costs"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
-
-      <label htmlFor="gDVResidential">
-        GDV Residential
-        <input
-          type="number"
-          id="gDVResidential"
+        <Step2NumberInput
           name="gDVResidential"
-          onChange={changeHandler}
-          value={formState.gDVResidential}
+          label="GDV Residential"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
-
-      <label htmlFor="gDVCommercial">
-        GDV Commercial
-        <input
-          type="number"
-          id="gDVCommercial"
+        <Step2NumberInput
           name="gDVCommercial"
-          onChange={changeHandler}
-          value={formState.gDVCommercial}
+          label="GDV Commercial"
+          changeHandler={changeHandler}
+          formState={formState}
         />
-      </label>
+      </div>
     </div>
   );
 };
