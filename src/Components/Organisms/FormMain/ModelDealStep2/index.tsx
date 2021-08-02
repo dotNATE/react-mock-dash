@@ -7,12 +7,14 @@ type userInput = {
 
 type ModelDealStep2Props = {
   formState: userInput;
+  errors: string[];
   changeHandler: any;
   currentStep: number;
 };
 
 const ModelDealStep2 = ({
   formState,
+  errors,
   changeHandler,
   currentStep,
 }: ModelDealStep2Props): any => {
@@ -24,24 +26,28 @@ const ModelDealStep2 = ({
           label="Purchase Price"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="acquisitionCosts"
           label="Acquisition Costs"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="buildCost"
           label="Build Cost"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="professionalFees"
           label="Professional Fees"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
       </div>
       <div className="flex flex-col justify-between col-start-5 col-span-3 row-start-2 row-span-4">
@@ -50,24 +56,28 @@ const ModelDealStep2 = ({
           label="Local Authority Costs"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="disposalCosts"
           label="Disposal Costs"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="gDVResidential"
           label="GDV Residential"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="gDVCommercial"
           label="GDV Commercial"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
       </div>
     </ModelDealStep>

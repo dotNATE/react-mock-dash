@@ -20,7 +20,7 @@ const SelectInput = ({
   return (
     <label
       htmlFor={name}
-      className="w-5/6 mx-auto grid grid-col-3 grid-row-3 text-gray-50 opacity-60 font-medium focus-within:opacity-90 transition duration-300"
+      className="w-5/6 mx-auto grid grid-col-3 grid-row-3 text-gray-50 opacity-60 font-medium hover:opacity-90 focus-within:opacity-90 transition duration-300"
     >
       {label}
       <select
@@ -30,6 +30,7 @@ const SelectInput = ({
         value={formState[name]}
         className="bg-transparent"
       >
+        <option value={0}>Please select an option...</option>
         {children}
       </select>
     </label>

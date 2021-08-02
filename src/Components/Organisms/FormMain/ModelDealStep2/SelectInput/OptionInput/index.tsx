@@ -1,5 +1,5 @@
 type OptionProps = {
-  value: string;
+  value: number;
   label: string;
 };
 

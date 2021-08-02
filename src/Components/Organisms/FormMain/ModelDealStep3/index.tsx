@@ -9,24 +9,26 @@ type userInput = {
 
 type ModelDealStep3Props = {
   formState: userInput;
+  errors: string[];
   changeHandler: any;
   currentStep: number;
 };
 
 const ModelDealStep3 = ({
   formState,
+  errors,
   changeHandler,
   currentStep,
 }: ModelDealStep3Props): any => {
   const dates = [
-    { label: "3 Months" },
-    { label: "6 Months" },
-    { label: "9 Months" },
-    { label: "12 Months" },
-    { label: "15 Months" },
-    { label: "18 Months" },
-    { label: "21 Months" },
-    { label: "24 Months" },
+    { value: 1, label: "3 Months" },
+    { value: 2, label: "6 Months" },
+    { value: 3, label: "9 Months" },
+    { value: 4, label: "12 Months" },
+    { value: 5, label: "15 Months" },
+    { value: 6, label: "18 Months" },
+    { value: 7, label: "21 Months" },
+    { value: 8, label: "24 Months" },
   ];
   return (
     <ModelDealStep currentStep={currentStep} targetStep={3}>
@@ -54,7 +56,10 @@ const ModelDealStep3 = ({
           formState={formState}
         >
           <OptionsInputArray
-            data={[{ label: "Sell" }, { label: "Refinance" }]}
+            data={[
+              { value: 1, label: "Sell" },
+              { value: 2, label: "Refinance" },
+            ]}
           />
         </SelectInput>
       </div>
@@ -64,18 +69,21 @@ const ModelDealStep3 = ({
           label="Residential Units"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="existingInternalArea"
           label="Existing Internal Area (sqft)"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
         <NumberInput
           name="residentialGrossInternalArea"
           label="Residential Gross Internal Area (sqft)"
           changeHandler={changeHandler}
           formState={formState}
+          errors={errors}
         />
       </div>
     </ModelDealStep>

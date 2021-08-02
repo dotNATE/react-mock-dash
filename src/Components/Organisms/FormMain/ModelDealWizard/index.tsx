@@ -13,7 +13,7 @@ const ModelDealWizard = ({
 }: ModelDealWizardProps): JSX.Element => {
   useEffect(() => {
     const countChildren = Children.toArray(children).length;
-    setMaxStep(countChildren);
+    setMaxStep(countChildren - 1);
   });
 
   return (

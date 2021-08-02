@@ -1,6 +1,7 @@
 import Option from "../OptionInput";
 
 type optionType = {
+  value: number;
   label: string;
 };
 
@@ -12,9 +13,7 @@ const OptionsInputArray = ({ data }: OptionsInputArrayProps): any => {
   return (
     <>
       {Array.isArray(data)
-        ? data.map((option) => (
-            <Option label={option.label} value={option.label} />
-          ))
+        ? data.map(({ label, value }) => <Option label={label} value={value} />)
         : null}
     </>
   );
