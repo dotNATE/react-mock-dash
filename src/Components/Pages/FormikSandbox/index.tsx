@@ -18,8 +18,8 @@ const FormikSandbox = (): JSX.Element => {
     let errors: FormikErrors<FormValues> = {};
     if (!values.purchasePrice) {
       errors.purchasePrice = "Required";
-    } else if (values.purchasePrice < 1500000) {
-      errors.purchasePrice = "Must be at least £1.5m";
+    } else if (values.purchasePrice < 50000) {
+      errors.purchasePrice = "Must be at least £50k";
     }
     return errors;
   };
@@ -42,7 +42,7 @@ const FormikSandbox = (): JSX.Element => {
         stepSetter={setCurrentStep}
       >
         <ModelDealStep currentStep={currentStep} targetStep={1}>
-          <div className="p-24">
+          <div className="h-full flex flex-col justify-center">
             <div className="text-white font-medium tracking-wider mb-4">
               <div className="py-4 text-2xl">
                 <h1>Great, let's get started with the Purchase Price</h1>
@@ -58,12 +58,9 @@ const FormikSandbox = (): JSX.Element => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.purchasePrice}
+                error={formik.errors.purchasePrice}
+                touched={formik.touched.purchasePrice}
               />
-              {formik.errors.purchasePrice && formik.touched.purchasePrice ? (
-                <div className="text-red-600 font-medium">
-                  {formik.errors.purchasePrice}
-                </div>
-              ) : null}
             </div>
           </div>
         </ModelDealStep>
