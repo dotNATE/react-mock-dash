@@ -15,6 +15,18 @@ const WizardMain = ({
 }: WizardMainProps): JSX.Element => {
   const [maxStep, setMaxStep] = useState(1);
 
+  let bgClass = "w-full bg-cover bg-top ";
+
+  if (currentStep === 1) {
+    bgClass += "bg-model-wiz-1";
+  }
+  if (currentStep === 2) {
+    bgClass += "bg-model-wiz-2";
+  }
+  if (currentStep === 3) {
+    bgClass += "bg-model-wiz-3";
+  }
+
   useEffect(() => {
     const countChildren = Children.toArray(children).length;
     setMaxStep(countChildren);
@@ -29,7 +41,7 @@ const WizardMain = ({
   };
 
   return (
-    <div className={`w-full bg-cover bg-top bg-model-wiz-${currentStep}`}>
+    <div className={bgClass}>
       <form
         onSubmit={onSubmit}
         className="h-full bg-black bg-opacity-40 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative"

@@ -12,9 +12,7 @@ const ModelDealStep = ({
   if (currentStep !== targetStep) {
     return null;
   }
-  return (
-    <div className="h-full grid grid-cols-8 grid-rows-6 py-4">{children}</div>
-  );
+  return <div className="h-full p-20">{children}</div>;
 };
 
 export default ModelDealStep;

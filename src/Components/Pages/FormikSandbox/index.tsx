@@ -1,51 +1,81 @@
 import { useState } from "react";
 
-import { Formik } from "formik";
+import { useFormik, FormikErrors } from "formik";
 
 import DashboardLayout from "../../Atoms/DashboardLayout";
 import WizardMain from "./WizardMain";
 import ModelDealStep from "../../Organisms/FormMain/ModelDealStep";
+import NumberInputField from "./WizardMain/Components/Atoms/NumberInputField/index";
+
+type FormValues = {
+  purchasePrice: number | undefined;
+};
 
 const FormikSandbox = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const validate = (values: FormValues) => {
+    let errors: FormikErrors<FormValues> = {};
+    if (!values.purchasePrice) {
+      errors.purchasePrice = "Required";
+    } else if (values.purchasePrice < 1500000) {
+      errors.purchasePrice = "Must be at least £1.5m";
+    }
+    return errors;
   };
+
+  const formik = useFormik({
+    initialValues: {
+      purchasePrice: undefined,
+    },
+    validate,
+    onSubmit: (e: any) => {
+      e.preventDefault();
+    },
+  });
 
   return (
     <DashboardLayout>
-      <Formik initialValues={{ company: "" }} onSubmit={handleSubmit}>
-        <WizardMain
-          currentStep={currentStep}
-          onSubmit={handleSubmit}
-          stepSetter={setCurrentStep}
-        >
-          <ModelDealStep currentStep={currentStep} targetStep={1}>
-            <div>
-              <input
-                id="purchasePrice"
-                name="purchasePrice"
-                type="text"
-                className="peer"
-                placeholder="Purchase Price"
-              />
-              <label
-                htmlFor="purchasePrice"
-                className="peer-placeholder-shown:text-red-500"
-              >
-                Purchase Price
-              </label>
+      <WizardMain
+        currentStep={currentStep}
+        onSubmit={formik.handleSubmit}
+        stepSetter={setCurrentStep}
+      >
+        <ModelDealStep currentStep={currentStep} targetStep={1}>
+          <div className="p-24">
+            <div className="text-white font-medium tracking-wider mb-4">
+              <div className="py-4 text-2xl">
+                <h1>Great, let's get started with the Purchase Price</h1>
+              </div>
+              <div className="py-4 text-lg">
+                <p>This is includes anything Lorem Ipsum.</p>
+              </div>
             </div>
-          </ModelDealStep>
-          <ModelDealStep currentStep={currentStep} targetStep={2}>
-            <div>test step 2</div>
-          </ModelDealStep>
-          <ModelDealStep currentStep={currentStep} targetStep={3}>
-            <div>test step 3</div>
-          </ModelDealStep>
-        </WizardMain>
-      </Formik>
+            <div className="w-4/5 mx-auto mt-4">
+              <NumberInputField
+                name="purchasePrice"
+                label="Purchase Price (GBP)"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.purchasePrice}
+              />
+              {formik.errors.purchasePrice && formik.touched.purchasePrice ? (
+                <div className="text-red-600 font-medium">
+                  {formik.errors.purchasePrice}
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </ModelDealStep>
+
+        <ModelDealStep currentStep={currentStep} targetStep={2}>
+          <div>test step 2</div>
+        </ModelDealStep>
+
+        <ModelDealStep currentStep={currentStep} targetStep={3}>
+          <div>test step 3</div>
+        </ModelDealStep>
+      </WizardMain>
     </DashboardLayout>
   );
 };
