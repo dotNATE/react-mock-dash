@@ -34,10 +34,10 @@ const Nav = (): JSX.Element => {
               <h2 className="col-start-1 col-end-4">New Deal Model</h2>
             </div>
           </NavBarLink>
-          <NavBarLink to="/">
+          <NavBarLink to="/formik">
             <div className="flex">
               <StarIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">My Deals</h2>
+              <h2 className="col-start-1 col-end-4">Formik Sandbox</h2>
             </div>
           </NavBarLink>
           <NavBarLink to="/">

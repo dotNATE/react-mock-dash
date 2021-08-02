@@ -27,6 +27,7 @@ const TextInput = ({
       ) : (
         <div>{label}</div>
       )}
+
       <input
         type="text"
         id={name}

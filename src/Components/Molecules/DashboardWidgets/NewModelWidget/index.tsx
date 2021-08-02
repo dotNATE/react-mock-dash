@@ -7,7 +7,7 @@ const NewModelWidget = (): JSX.Element => {
     <>
       <DashboardWidgetHeader content="Model a new deal" />
       <NavLink to="model">
-        <div className="flex justify-center items-center h-full bg-blue-50 rounded-lg cursor-pointer">
+        <div className="grid grid-cols-1 grid-rows-1 justify-center bg-blue-50 rounded-lg cursor-pointer">
           <PlusIcon className="h-16 w-16 text-gray-600" />
         </div>
       </NavLink>

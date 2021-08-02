@@ -5,7 +5,7 @@ type DashboardWidgetHeaderProps = {
 const DashboardWidgetHeader = ({
   content,
 }: DashboardWidgetHeaderProps): JSX.Element => (
-  <h2 className="absolute  w-full flex bg-black text-white rounded-t-lg h-12 justify-center items-center font-medium">
+  <h2 className="absolute w-full bg-black text-white justify-center rounded-t-lg h-12 font-medium flex items-center">
     {content}
   </h2>
 );

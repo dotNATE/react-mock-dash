@@ -3,11 +3,11 @@ import DashboardLayout from "../../Atoms/DashboardLayout";
 import DealTable from "../../Organisms/DealTable";
 import DashboardMain from "../../Organisms/DashboardMain";
 import SidebarTest from "./../../Atoms/SidebarTest/index";
-import { ExclamationIcon } from "@heroicons/react/outline";
+import { ExclamationIcon, PlusIcon } from "@heroicons/react/outline";
 import DashboardWidgetWrapper from "../../Atoms/DashboardWidgetWrapper";
-import NewModelWidget from "../../Molecules/DashboardWidgets/NewModelWidget";
 import MapWidget from "../../Molecules/DashboardWidgets/MapWidget";
 import DashboardWidgetHeader from "../../Atoms/DashboardWidgetHeader";
+import { NavLink } from "react-router-dom";
 
 type DealData = {
   address: string;
@@ -107,59 +107,55 @@ const Dashboard = (): JSX.Element => {
   return (
     <DashboardLayout>
       <DashboardMain>
-        <DashboardWidgetWrapper
-          colStart={1}
-          colSpan={6}
-          rowStart={1}
-          rowSpan={3}
-        >
-          <MapWidget />
-        </DashboardWidgetWrapper>
+        <div className="col-start-1 col-span-6 row-start-1 row-span-3">
+          <DashboardWidgetWrapper>
+            <MapWidget />
+          </DashboardWidgetWrapper>
+        </div>
 
-        <DashboardWidgetWrapper
-          colStart={7}
-          colSpan={2}
-          rowStart={1}
-          rowSpan={3}
-        >
-          <DashboardWidgetHeader content="Notifications" />
+        <div className="col-start-7 col-span-2 row-start-1 row-span-3">
+          <DashboardWidgetWrapper>
+            <div className="h-full relative ">
+              <DashboardWidgetHeader content="Notifications" />
 
-          <div className="pt-12">
-            {notifications.length > 0 ? (
-              notifications.map((notification) => (
-                <div className="grid grid-cols-4 items-center w-full h-12 pl-4 bg-red-50">
-                  <ExclamationIcon className="h-6 w-6 mr-3 text-red-600 col-start-1" />
-                  <div className="">{notification}</div>
-                </div>
-              ))
-            ) : (
-              <div className="flex justify-center items-center h-full bg-blue-50 rounded-lg">
-                <div className="w-3/5 text-center text-gray-600">
-                  You have no new notifications
-                </div>
+              <div className="pt-12">
+                {notifications.length > 0 ? (
+                  notifications.map((notification) => (
+                    <div className="grid grid-cols-4 items-center w-full h-12 pl-4 bg-red-50">
+                      <ExclamationIcon className="h-6 w-6 mr-3 text-red-600 col-start-1" />
+                      <div className="">{notification}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="flex justify-center items-center h-full bg-blue-50 rounded-lg">
+                    <div className="w-3/5 text-center text-gray-600">
+                      You have no new notifications
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </DashboardWidgetWrapper>
+            </div>
+          </DashboardWidgetWrapper>
+        </div>
 
-        <DashboardWidgetWrapper
-          colStart={1}
-          colSpan={2}
-          rowStart={4}
-          rowSpan={3}
-        >
-          <NewModelWidget />
-        </DashboardWidgetWrapper>
+        <div className="col-start-1 col-span-2 row-start-4 row-span-3">
+          <DashboardWidgetWrapper>
+            <div className="h-full relative">
+              <DashboardWidgetHeader content="Model a new deal" />
+              <NavLink to="model">
+                <div className="cursor-pointer h-full flex justify-center items-center pt-12">
+                  <PlusIcon className="text-gray-600 h-16 w-16" />
+                </div>
+              </NavLink>
+            </div>
+          </DashboardWidgetWrapper>
+        </div>
 
-        <DashboardWidgetWrapper
-          colStart={3}
-          colSpan={6}
-          rowStart={4}
-          rowSpan={3}
-          overflow={true}
-        >
-          <DealTable data={deals} clicker={clickHandler} />
-        </DashboardWidgetWrapper>
+        <div className="col-start-3 col-span-6 row-start-4 row-span-3">
+          <DashboardWidgetWrapper overflow>
+            <DealTable data={deals} clicker={clickHandler} />
+          </DashboardWidgetWrapper>
+        </div>
       </DashboardMain>
 
       <SidebarTest open={open} setOpen={setOpen} deal={selectedDeal} />

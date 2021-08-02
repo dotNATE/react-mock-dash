@@ -1,5 +1,6 @@
 module.exports = {
-  purge: [],
+  mode: "jit",
+  purge: ["./public/**/*.html", "./src/**/*.{ts,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -20,5 +21,5 @@ module.exports = {
       backdropGrayscale: ["focus-within"],
     },
   },
-  plugins: [require("tailwindcss-debug-screens")],
+  plugins: [],
 };

@@ -20,7 +20,7 @@ const ModelDealStep2 = ({
 }: ModelDealStep2Props): any => {
   return (
     <ModelDealStep currentStep={currentStep} targetStep={2}>
-      <div className="flex flex-col justify-between col-start-2 col-span-3 row-start-2 row-span-4">
+      <div className="grid grid-rows-1 grid-cols-4 gap-5 col-start-2 col-span-6 row-start-2 row-span-1">
         <NumberInput
           name="purchasePrice"
           label="Purchase Price"
@@ -50,7 +50,7 @@ const ModelDealStep2 = ({
           errors={errors}
         />
       </div>
-      <div className="flex flex-col justify-between col-start-5 col-span-3 row-start-2 row-span-4">
+      <div className="grid grid-rows-1 grid-cols-2 gap-5 col-start-2 col-span-6 row-start-3 row-span-1">
         <NumberInput
           name="localAuthorityCosts"
           label="Local Authority Costs"
@@ -65,6 +65,8 @@ const ModelDealStep2 = ({
           formState={formState}
           errors={errors}
         />
+      </div>
+      <div className="grid grid-rows-1 grid-cols-2 gap-5 col-start-2 col-span-6 row-start-4 row-span-1">
         <NumberInput
           name="gDVResidential"
           label="GDV Residential"
