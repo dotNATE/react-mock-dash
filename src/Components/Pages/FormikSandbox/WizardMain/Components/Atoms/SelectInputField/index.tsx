@@ -1,8 +1,9 @@
 import { ExclamationIcon } from "@heroicons/react/outline";
 
-type TextInputFieldProps = {
+type SelectInputFieldProps = {
   name: string;
   label: string;
+  children: JSX.Element | JSX.Element[];
   value?: string | undefined;
   onChange?: any;
   onBlur?: any;
@@ -10,7 +11,7 @@ type TextInputFieldProps = {
   touched?: boolean | undefined;
 };
 
-const TextInputField = ({
+const SelectInputField = ({
   name,
   label,
   value,
@@ -18,16 +19,16 @@ const TextInputField = ({
   touched,
   onChange,
   onBlur,
-}: TextInputFieldProps): JSX.Element => {
+  children,
+}: SelectInputFieldProps): JSX.Element => {
   const errorBorder = error && touched ? " border-red-600" : "";
 
   return (
     <div>
-      <div className="opacity-60 hover:opacity-100 focus-within:opacity-100 relative flex flex-col text-black font-medium transition duration-300">
-        <input
+      <div className="opacity-40 hover:opacity-100 focus-within:opacity-100 relative flex flex-col text-black font-medium transition duration-300">
+        <select
           id={name}
           name={name}
-          type="text"
           className={
             "peer h-14 bg-transparent border-b-4 border-black p-4 outline-none placeholder-transparent z-50" +
             errorBorder
@@ -36,9 +37,12 @@ const TextInputField = ({
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-        />
+        >
+          <option value={0}>Please select an option</option>
+          {children}
+        </select>
         <label
-          className="absolute -top-3 text-sm pl-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-black peer-placeholder-shown:font-normal peer-placeholder-shown:top-3.5 transition-all peer-focus:font-medium peer-focus:text-black peer-focus:-top-3 peer-focus:text-sm"
+          className="absolute -top-3 text-sm pl-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-normal peer-placeholder-shown:top-3.5 transition-all peer-focus:font-medium peer-focus:text-black peer-focus:-top-3 peer-focus:text-sm"
           htmlFor={name}
         >
           {label}
@@ -56,4 +60,4 @@ const TextInputField = ({
   );
 };
 
-export default TextInputField;
+export default SelectInputField;

@@ -5,6 +5,7 @@ type WizardMainProps = {
   onSubmit: any;
   children: JSX.Element | JSX.Element[];
   stepSetter: any;
+  isSubmitting?: boolean;
 };
 
 const WizardMain = ({
@@ -12,20 +13,33 @@ const WizardMain = ({
   onSubmit,
   children,
   stepSetter,
+  isSubmitting,
 }: WizardMainProps): JSX.Element => {
   const [maxStep, setMaxStep] = useState(1);
 
-  let bgClass = "w-full bg-cover bg-top ";
+  // let bgClass = "w-full bg-cover bg-top ";
 
-  if (currentStep === 1) {
-    bgClass += "bg-model-wiz-1";
-  }
-  if (currentStep === 2) {
-    bgClass += "bg-model-wiz-2";
-  }
-  if (currentStep === 3) {
-    bgClass += "bg-model-wiz-3";
-  }
+  // if (currentStep === 1) {
+  //   bgClass += "bg-model-wiz-1";
+  // }
+  // if (currentStep === 2) {
+  //   bgClass += "bg-model-wiz-2";
+  // }
+  // if (currentStep === 3) {
+  //   bgClass += "bg-model-wiz-3";
+  // }
+  // if (currentStep === 4) {
+  //   bgClass += "bg-model-wiz-4";
+  // }
+  // if (currentStep === 5) {
+  //   bgClass += "bg-model-wiz-5";
+  // }
+  // if (currentStep === 6) {
+  //   bgClass += "bg-model-wiz-6";
+  // }
+  // if (currentStep === 7) {
+  //   bgClass += "bg-model-wiz-7";
+  // }
 
   useEffect(() => {
     const countChildren = Children.toArray(children).length;
@@ -41,10 +55,10 @@ const WizardMain = ({
   };
 
   return (
-    <div className={bgClass}>
+    <div className="w-full">
       <form
         onSubmit={onSubmit}
-        className="h-full bg-black bg-opacity-40 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative"
+        className="h-full bg-gray-200 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative"
       >
         {children}
         <div className="flex justify-around items-center absolute bottom-10 w-full">
@@ -58,6 +72,7 @@ const WizardMain = ({
             type="submit"
             className="h-14 w-28 rounded-md shadow-md cursor-pointer font-medium bg-white hover:bg-gray-200 active:bg-gray-300"
             value={`${currentStep} / ${maxStep}`}
+            disabled={isSubmitting}
           />
           <div
             onClick={incrementCurrentStep}
