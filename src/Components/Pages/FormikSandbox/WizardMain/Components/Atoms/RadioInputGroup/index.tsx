@@ -1,4 +1,3 @@
-import { ExclamationIcon } from "@heroicons/react/outline";
 import { RadioOption } from "./RadioOption";
 
 type optionType = {
@@ -27,35 +26,28 @@ export const RadioInputGroup = ({
   onChange,
   onBlur,
   value,
+  children,
 }: RadioInputGroupProps): JSX.Element => {
   const errorBorder = error && touched ? " border-red-600" : "";
 
   return (
-    <div className="transition-all duration-300">
+    <div className="relative">
       <div
-        className={`grid grid-cols-1 px-8 py-4 gap-3 border-black border-2 border-opacity-50 hover:border-opacity-100 transition-all font-medium ${errorBorder}`}
+        className={`transition-all duration-300 grid grid-cols-1 px-8 py-4 gap-3 border-black border-4 border-opacity-50 hover:border-opacity-100 transition-all font-medium ${errorBorder}`}
       >
-        {Array.isArray(options)
-          ? options.map((option) => (
-              <RadioOption
-                name={name}
-                label={option.label}
-                value={option.value}
-                onBlur={onBlur}
-                onChange={onChange}
-                parentValue={value}
-              />
-            ))
-          : null}
+        {Array.isArray(options) &&
+          options.map((option) => (
+            <RadioOption
+              name={name}
+              label={option.label}
+              value={option.value}
+              onBlur={onBlur}
+              onChange={onChange}
+              parentValue={value}
+            />
+          ))}
       </div>
-      {error && touched ? (
-        <div className="text-red-600 font-medium flex pl-3 pt-2 h-6">
-          <ExclamationIcon className="h-6 w-6 mr-3" />
-          {error}
-        </div>
-      ) : (
-        <div className="h-6"></div>
-      )}
+      {children}
     </div>
   );
 };

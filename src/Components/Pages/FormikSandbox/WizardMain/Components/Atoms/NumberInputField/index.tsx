@@ -1,5 +1,3 @@
-import { ExclamationIcon } from "@heroicons/react/outline";
-
 type NumberInputFieldProps = {
   name: string;
   label: string;
@@ -8,6 +6,7 @@ type NumberInputFieldProps = {
   onBlur?: any;
   error?: string | undefined;
   touched?: boolean | undefined;
+  children?: JSX.Element | JSX.Element[];
 };
 
 const NumberInputField = ({
@@ -18,11 +17,12 @@ const NumberInputField = ({
   touched,
   onChange,
   onBlur,
+  children,
 }: NumberInputFieldProps): JSX.Element => {
   const errorBorder = error && touched ? " border-red-600" : "";
 
   return (
-    <div>
+    <div className="relative">
       <div className="opacity-60 hover:opacity-100 focus-within:opacity-100 relative flex flex-col text-black font-medium transition duration-300">
         <input
           id={name}
@@ -44,14 +44,7 @@ const NumberInputField = ({
           {label}
         </label>
       </div>
-      {error && touched ? (
-        <div className="text-red-600 font-medium flex pl-3 pt-2 h-6">
-          <ExclamationIcon className="h-6 w-6 mr-3" />
-          {error}
-        </div>
-      ) : (
-        <div className="h-6"></div>
-      )}
+      {children}
     </div>
   );
 };

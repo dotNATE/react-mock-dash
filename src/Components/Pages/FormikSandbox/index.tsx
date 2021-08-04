@@ -10,6 +10,7 @@ import TextInputField from "./WizardMain/Components/Atoms/TextInputField";
 import SelectInputField from "./WizardMain/Components/Atoms/SelectInputField/index";
 import OptionsInputArray from "../../Organisms/FormMain/ModelDealStep2/SelectInput/OptionsInputArray";
 import { RadioInputGroup } from "./WizardMain/Components/Atoms/RadioInputGroup/index";
+import { ExclamationIcon } from "@heroicons/react/outline";
 
 type FormValues = {
   purchasePrice: number | undefined;
@@ -133,15 +134,22 @@ const FormikSandbox = (): JSX.Element => {
                     as={TextInputField}
                     error={errors.company}
                     touched={touched.company}
-                  />
-                  {!errors.company && touched.company && (
-                    <div
-                      onClick={incrementCurrentStep}
-                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
-                    >
-                      Next
-                    </div>
-                  )}
+                  >
+                    {!errors.company && touched.company && (
+                      <div
+                        onClick={incrementCurrentStep}
+                        className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
+                      >
+                        Next
+                      </div>
+                    )}
+                    {errors.company && touched.company && (
+                      <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
+                        <ExclamationIcon className="h-6 w-6 mr-3" />
+                        {errors.company}
+                      </div>
+                    )}
+                  </Field>
                 </div>
               </div>
             </ModelDealStep>
@@ -163,15 +171,22 @@ const FormikSandbox = (): JSX.Element => {
                     label="Purchase Price (GBP)"
                     error={errors.purchasePrice}
                     touched={touched.purchasePrice}
-                  />
-                  {!errors.purchasePrice && touched.purchasePrice && (
-                    <div
-                      onClick={incrementCurrentStep}
-                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
-                    >
-                      Next
-                    </div>
-                  )}
+                  >
+                    {!errors.purchasePrice && touched.purchasePrice && (
+                      <div
+                        onClick={incrementCurrentStep}
+                        className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
+                      >
+                        Next
+                      </div>
+                    )}
+                    {errors.purchasePrice && touched.purchasePrice && (
+                      <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6">
+                        <ExclamationIcon className="h-6 w-6 mr-3" />
+                        {errors.purchasePrice}
+                      </div>
+                    )}
+                  </Field>
                 </div>
               </div>
             </ModelDealStep>
@@ -199,7 +214,14 @@ const FormikSandbox = (): JSX.Element => {
                       label="GDV Commercial (GBP)"
                       error={errors.gdvCommercial}
                       touched={touched.gdvCommercial}
-                    />
+                    >
+                      {errors.gdvCommercial && touched.gdvCommercial && (
+                        <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
+                          <ExclamationIcon className="h-6 w-6 mr-3" />
+                          {errors.gdvCommercial}
+                        </div>
+                      )}
+                    </Field>
                   </div>
                   <div className="w-4/5 mx-auto col-start-2 col-span-3 row-start-2">
                     <Field
@@ -208,7 +230,27 @@ const FormikSandbox = (): JSX.Element => {
                       label="GDV Residential (GBP)"
                       error={errors.gdvResidential}
                       touched={touched.gdvResidential}
-                    />
+                    >
+                      <div className="w-full flex justify-end">
+                        {!errors.gdvResidential &&
+                          touched.gdvResidential &&
+                          !errors.gdvCommercial &&
+                          touched.gdvCommercial && (
+                            <div
+                              onClick={incrementCurrentStep}
+                              className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
+                            >
+                              Next
+                            </div>
+                          )}
+                      </div>
+                      {errors.gdvResidential && touched.gdvResidential && (
+                        <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
+                          <ExclamationIcon className="h-6 w-6 mr-3" />
+                          {errors.gdvResidential}
+                        </div>
+                      )}
+                    </Field>
                   </div>
                 </div>
               </div>
@@ -221,7 +263,7 @@ const FormikSandbox = (): JSX.Element => {
                     <h1>{`So, ${values.company}, just how long is this going to take?`}</h1>
                   </div>
                 </div>
-                <div className="w-4/5 mx-auto mt-4">
+                <div className="w-4/5 mx-auto mt-4 relative">
                   <Field
                     name="mobAndBuildPeriod"
                     label="Mobilisation and Build Period"
@@ -231,6 +273,20 @@ const FormikSandbox = (): JSX.Element => {
                   >
                     <OptionsInputArray data={step4Options} />
                   </Field>
+                  {!errors.mobAndBuildPeriod && touched.mobAndBuildPeriod && (
+                    <div
+                      onClick={incrementCurrentStep}
+                      className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
+                    >
+                      Next
+                    </div>
+                  )}
+                  {errors.mobAndBuildPeriod && touched.mobAndBuildPeriod && (
+                    <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
+                      <ExclamationIcon className="h-6 w-6 mr-3" />
+                      {errors.mobAndBuildPeriod}
+                    </div>
+                  )}
                 </div>
               </div>
             </ModelDealStep>
@@ -250,7 +306,22 @@ const FormikSandbox = (): JSX.Element => {
                     error={errors.exitStrategy}
                     touched={touched.exitStrategy}
                     options={step5Options}
-                  />
+                  >
+                    {!errors.exitStrategy && touched.exitStrategy && (
+                      <div
+                        onClick={incrementCurrentStep}
+                        className="absolute right-0 -bottom-14 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
+                      >
+                        Next
+                      </div>
+                    )}
+                    {errors.exitStrategy && touched.exitStrategy && (
+                      <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6">
+                        <ExclamationIcon className="h-6 w-6 mr-3" />
+                        {errors.exitStrategy}
+                      </div>
+                    )}
+                  </Field>
                 </div>
               </div>
             </ModelDealStep>
