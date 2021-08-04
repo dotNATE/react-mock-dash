@@ -40,14 +40,6 @@ const step5Options = [
     value: "refinance",
     label: "Refinance",
   },
-  {
-    value: "testField",
-    label: "Test Field",
-  },
-  {
-    value: "testField2",
-    label: "Test Field 2",
-  },
 ];
 
 const formatter = new Intl.NumberFormat("en-GB", {
@@ -59,6 +51,10 @@ const formatter = new Intl.NumberFormat("en-GB", {
 
 const FormikSandbox = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState(1);
+
+  const incrementCurrentStep = (): void => {
+    if (currentStep < 7) setCurrentStep(currentStep + 1);
+  };
 
   const validate = (values: FormValues) => {
     let errors: FormikErrors<FormValues> = {};
@@ -91,6 +87,10 @@ const FormikSandbox = (): JSX.Element => {
       errors.mobAndBuildPeriod = "Required";
     } else if (values.mobAndBuildPeriod <= 0) {
       errors.mobAndBuildPeriod = "Please select an option";
+    }
+
+    if (!values.exitStrategy) {
+      errors.exitStrategy = "Required";
     }
 
     return errors;
@@ -134,6 +134,14 @@ const FormikSandbox = (): JSX.Element => {
                     error={errors.company}
                     touched={touched.company}
                   />
+                  {!errors.company && touched.company && (
+                    <div
+                      onClick={incrementCurrentStep}
+                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+                    >
+                      Next
+                    </div>
+                  )}
                 </div>
               </div>
             </ModelDealStep>
@@ -156,6 +164,14 @@ const FormikSandbox = (): JSX.Element => {
                     error={errors.purchasePrice}
                     touched={touched.purchasePrice}
                   />
+                  {!errors.purchasePrice && touched.purchasePrice && (
+                    <div
+                      onClick={incrementCurrentStep}
+                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+                    >
+                      Next
+                    </div>
+                  )}
                 </div>
               </div>
             </ModelDealStep>
@@ -225,9 +241,7 @@ const FormikSandbox = (): JSX.Element => {
                   <div className="py-4 text-2xl">
                     <h1>{`Wow, ${values.mobAndBuildPeriod} months? This is starting to shape up!`}</h1>
                   </div>
-                  <h2>
-                    Do you have an exit strategy in mind? -{values.exitStrategy}
-                  </h2>
+                  <h2>Do you have an exit strategy in mind?</h2>
                 </div>
                 <div className="w-3/5 mx-auto mt-4">
                   <Field
@@ -243,22 +257,42 @@ const FormikSandbox = (): JSX.Element => {
 
             <ModelDealStep currentStep={currentStep} targetStep={6}>
               <Field name="company" as={TextInputField} label="Company Name" />
-              <Field
-                name="purchasePrice"
-                as={NumberInputField}
-                label="Purchase Price"
-              />
-              <Field
-                name="gdvCommercial"
-                as={NumberInputField}
-                label="GDV Commercial"
-              />
-              <Field
-                name="gdvResidential"
-                as={NumberInputField}
-                label="GDV Residential"
-              />
-              <pre>{JSON.stringify(values, null, 2)}</pre>
+              <pre className="mt-2">{JSON.stringify(values, null, 2)}</pre>
+            </ModelDealStep>
+
+            <ModelDealStep currentStep={currentStep} targetStep={7}>
+              <h1 className="font-medium">Plans for future</h1>
+              <ul className="p-4">
+                <li className="hover:text-pink-400 transition-all">
+                  Remove Nav during form to keep focus
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Add animated transitions between slides
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Add display for user inputs so that it can be monitored
+                  throughout
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Input confirmation screen prior to submit
+                </li>
+                <li className="pl-4 hover:text-pink-400 transition-all">
+                  Use this screen to navigate to specific points in the form
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Submit success screen
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Transport user to location/page of first error
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Better buttons for form navigation
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Smart buttons for form nav (i.e. appear once touched & w/o
+                  errors)
+                </li>
+              </ul>
             </ModelDealStep>
           </WizardMain>
         )}

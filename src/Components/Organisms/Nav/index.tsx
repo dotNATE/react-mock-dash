@@ -2,12 +2,10 @@ import {
   CalendarIcon,
   ChartBarIcon,
   CogIcon,
-  ExclamationIcon,
   FolderIcon,
   InboxIcon,
   LogoutIcon,
   PlusIcon,
-  StarIcon,
   ViewGridIcon,
 } from "@heroicons/react/outline";
 import ProIcon from "../../Atoms/ProIcon";
@@ -16,7 +14,7 @@ import NavBarLink from "../../Molecules/NavLink";
 
 const Nav = (): JSX.Element => {
   return (
-    <nav className="flex flex-col w-80 shadow-lg pt-4">
+    <nav className="flex flex-col w-80 shadow-lg pt-4 z-50">
       <div className="h-16 flex justify-center items-center">
         <SqftLogo />
       </div>
@@ -28,48 +26,41 @@ const Nav = (): JSX.Element => {
               <h2 className="col-start-1 col-end-4">Dashboard</h2>
             </div>
           </NavBarLink>
+
           <NavBarLink to="/model">
             <div className="flex">
               <PlusIcon className="h-6 w-6 mr-3" />
               <h2 className="col-start-1 col-end-4">New Deal Model</h2>
             </div>
           </NavBarLink>
-          <NavBarLink to="/formik">
-            <div className="flex">
-              <StarIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Formik Sandbox</h2>
-            </div>
-          </NavBarLink>
-          <NavBarLink to="/">
-            <div className="flex">
-              <ExclamationIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Notifications</h2>
-            </div>
-          </NavBarLink>
+
           <NavBarLink to="/">
             <div className="flex">
               <FolderIcon className="h-6 w-6 mr-3" />
               <h2 className="col-start-1 col-end-4">Projects</h2>
             </div>
           </NavBarLink>
-          <NavBarLink to="/">
-            <div className="flex">
-              <CalendarIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Calendar</h2>
-            </div>
-          </NavBarLink>
-          <NavBarLink to="/">
-            <div className="flex">
-              <InboxIcon className="h-6 w-6 mr-3" />
-              <h2 className="col-start-1 col-end-4">Documents</h2>
-            </div>
-          </NavBarLink>
+
           <NavBarLink to="/">
             <div className="flex">
               <ChartBarIcon className="h-6 w-6 mr-3" />
               <h2 className="col-start-1 col-end-4">Reports</h2>
             </div>
             <ProIcon />
+          </NavBarLink>
+
+          <NavBarLink to="/">
+            <div className="flex">
+              <CalendarIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Calendar</h2>
+            </div>
+          </NavBarLink>
+
+          <NavBarLink to="/">
+            <div className="flex">
+              <InboxIcon className="h-6 w-6 mr-3" />
+              <h2 className="col-start-1 col-end-4">Documents</h2>
+            </div>
           </NavBarLink>
         </ul>
         <ul className="border-t-2 border-gray-200 pt-4">

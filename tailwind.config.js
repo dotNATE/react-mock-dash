@@ -1,6 +1,9 @@
 module.exports = {
   mode: "jit",
-  purge: ["./public/**/*.html", "./src/**/*.{ts,tsx}"],
+  purge: {
+    enabled: false,
+    content: ["./public/**/*.html", "./src/**/*.{ts,tsx}"],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -19,6 +22,8 @@ module.exports = {
           "url('images/form_bgs/kyle-glenn--f8ssjFhD1k-unsplash.jpg')",
         "model-wiz-7":
           "url('images/form_bgs/sharon-mccutcheon-8lnbXtxFGZw-unsplash.jpg')",
+        "model-wiz-main":
+          "url('images/form_bgs/leone-venter-VieM9BdZKFo-unsplash.jpg')",
       }),
     },
   },

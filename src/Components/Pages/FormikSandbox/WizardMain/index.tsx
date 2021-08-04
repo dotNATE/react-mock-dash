@@ -17,29 +17,7 @@ const WizardMain = ({
 }: WizardMainProps): JSX.Element => {
   const [maxStep, setMaxStep] = useState(1);
 
-  // let bgClass = "w-full bg-cover bg-top ";
-
-  // if (currentStep === 1) {
-  //   bgClass += "bg-model-wiz-1";
-  // }
-  // if (currentStep === 2) {
-  //   bgClass += "bg-model-wiz-2";
-  // }
-  // if (currentStep === 3) {
-  //   bgClass += "bg-model-wiz-3";
-  // }
-  // if (currentStep === 4) {
-  //   bgClass += "bg-model-wiz-4";
-  // }
-  // if (currentStep === 5) {
-  //   bgClass += "bg-model-wiz-5";
-  // }
-  // if (currentStep === 6) {
-  //   bgClass += "bg-model-wiz-6";
-  // }
-  // if (currentStep === 7) {
-  //   bgClass += "bg-model-wiz-7";
-  // }
+  let bgClass = "w-full bg-cover bg-top bg-model-wiz-main";
 
   useEffect(() => {
     const countChildren = Children.toArray(children).length;
@@ -55,16 +33,18 @@ const WizardMain = ({
   };
 
   return (
-    <div className="w-full">
+    <div
+      className={`w-full ${bgClass} selection:bg-pink-600 selection:text-white`}
+    >
       <form
         onSubmit={onSubmit}
-        className="h-full bg-gray-200 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative"
+        className={`h-full bg-gray-200 bg-opacity-40 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative`}
       >
         {children}
         <div className="flex justify-around items-center absolute bottom-10 w-full">
           <div
             onClick={decrementCurrentStep}
-            className="flex justify-center items-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+            className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
           >
             Back
           </div>
@@ -76,7 +56,7 @@ const WizardMain = ({
           />
           <div
             onClick={incrementCurrentStep}
-            className="flex justify-center items-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
+            className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
           >
             Next
           </div>

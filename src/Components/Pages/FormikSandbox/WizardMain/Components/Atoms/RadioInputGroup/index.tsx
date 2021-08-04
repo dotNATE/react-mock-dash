@@ -28,9 +28,13 @@ export const RadioInputGroup = ({
   onBlur,
   value,
 }: RadioInputGroupProps): JSX.Element => {
+  const errorBorder = error && touched ? " border-red-600" : "";
+
   return (
     <div className="transition-all duration-300">
-      <div className="grid grid-cols-1 px-8 py-4 gap-3 border-black border-2 border-opacity-50 hover:border-opacity-100 transition-all font-medium">
+      <div
+        className={`grid grid-cols-1 px-8 py-4 gap-3 border-black border-2 border-opacity-50 hover:border-opacity-100 transition-all font-medium ${errorBorder}`}
+      >
         {Array.isArray(options)
           ? options.map((option) => (
               <RadioOption

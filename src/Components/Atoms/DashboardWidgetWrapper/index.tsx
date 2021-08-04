@@ -9,7 +9,7 @@ const DashboardWidgetWrapper = ({
 }: DashboardWidgetWrapperProps): JSX.Element => {
   return (
     <div
-      className={`h-full w-full shadow-md rounded-lg bg-blue-50 ${
+      className={`h-full w-full shadow-md rounded-lg bg-white ${
         overflow ? "overflow-y-auto" : null
       }`}
     >

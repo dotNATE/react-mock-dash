@@ -27,10 +27,10 @@ export const RadioOption = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="absolute opacity-0 peer"
+        className="absolute opacity-0 peer cursor-pointer"
         checked={parentValue === value}
       />
-      <div className="h-5 w-5 rounded-full border-blue-700 border-2 group-hover:bg-blue-300 inline-block mr-2 peer-checked:bg-blue-500 peer-active:bg-blue-600"></div>
+      <div className="h-5 w-5 rounded-full border-pink-700 border-2 group-hover:bg-pink-300 inline-block mr-2 peer-checked:bg-pink-500 peer-active:bg-pink-600 cursor-pointer"></div>
       {label}
     </label>
   );
