@@ -5,7 +5,6 @@ import { Formik, Field, FormikErrors } from "formik";
 import DashboardLayout from "../../Atoms/DashboardLayout";
 import WizardMain from "./WizardMain";
 import ModelDealStep from "../../Organisms/FormMain/ModelDealStep";
-import NumberInputField from "./WizardMain/Components/Atoms/NumberInputField/index";
 import TextInputField from "./WizardMain/Components/Atoms/TextInputField";
 import SelectInputField from "./WizardMain/Components/Atoms/SelectInputField/index";
 import OptionsInputArray from "../../Organisms/FormMain/ModelDealStep2/SelectInput/OptionsInputArray";
@@ -121,144 +120,117 @@ const FormikSandbox = (): JSX.Element => {
             isSubmitting={isSubmitting}
           >
             <ModelDealStep currentStep={currentStep} targetStep={1}>
-              <div className="h-full flex flex-col justify-center">
-                <div className="text-black font-medium tracking-wider mb-4">
-                  <div className="py-4 text-2xl">
-                    <h1>What company are you joining us from today?</h1>
-                  </div>
-                </div>
-                <div className="w-4/5 mx-auto mt-4">
+              <div className="h-full flex flex-col justify-start text-black font-medium tracking-wider leading-relaxed p-48">
+                <h1 className="text-2xl my-4">Hi there! My name's Hugo.</h1>
+                <span>
+                  I'm here to help you make a model of your investment.
+                </span>
+                <span>
+                  I need to know the name of your business to get started:
+                </span>
+                <div className="mt-12">
                   <Field
                     name="company"
                     label="Company Name"
                     as={TextInputField}
                     error={errors.company}
                     touched={touched.company}
-                  >
-                    {!errors.company && touched.company && (
-                      <div
-                        onClick={incrementCurrentStep}
-                        className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
-                      >
-                        Next
-                      </div>
-                    )}
-                    {errors.company && touched.company && (
-                      <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
-                        <ExclamationIcon className="h-6 w-6 mr-3" />
-                        {errors.company}
-                      </div>
-                    )}
-                  </Field>
+                    type="text"
+                  />
+                  {!errors.company && values.company && (
+                    <div
+                      onClick={incrementCurrentStep}
+                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer mt-6"
+                    >
+                      Next
+                    </div>
+                  )}
                 </div>
               </div>
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={2}>
-              <div className="h-full flex flex-col justify-center">
-                <div className="text-black font-medium tracking-wider mb-4">
-                  <div className="py-4 text-2xl">
-                    <h1>{`Fantastic! It's great to have ${values.company} on board with SQFT`}</h1>
-                  </div>
-                  <div className="py-4 text-lg">
-                    <p>Let's get started with the property Purchase Price.</p>
-                  </div>
-                </div>
-                <div className="w-4/5 mx-auto mt-4">
+              <div className="h-full flex flex-col justify-start text-black font-medium tracking-wider leading-relaxed p-48">
+                <h1 className="text-2xl my-4">
+                  Fantastic! It's great to have {values.company} on board with
+                  Squarefoot
+                </h1>
+                <span>Now let's get stuck straight in...</span>
+                <span>What is the purchase price of the development?:</span>
+                <div className="mt-12">
                   <Field
                     name="purchasePrice"
-                    as={NumberInputField}
+                    as={TextInputField}
                     label="Purchase Price (GBP)"
+                    type="number"
                     error={errors.purchasePrice}
                     touched={touched.purchasePrice}
-                  >
-                    {!errors.purchasePrice && touched.purchasePrice && (
-                      <div
-                        onClick={incrementCurrentStep}
-                        className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
-                      >
-                        Next
-                      </div>
-                    )}
-                    {errors.purchasePrice && touched.purchasePrice && (
-                      <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6">
-                        <ExclamationIcon className="h-6 w-6 mr-3" />
-                        {errors.purchasePrice}
-                      </div>
-                    )}
-                  </Field>
+                  />
+                  {!errors.purchasePrice && values.purchasePrice && (
+                    <div
+                      onClick={incrementCurrentStep}
+                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer mt-6"
+                    >
+                      Next
+                    </div>
+                  )}
                 </div>
               </div>
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={3}>
-              <div className="h-4/5 mx-auto flex flex-col justify-between">
-                <div className="text-black font-medium tracking-wider mb-4">
-                  <div className="py-4 text-2xl">
-                    <h1>
-                      {`Holy Moly! You shelled out ${formatter.format(
-                        Number(values.purchasePrice)
-                      )},
-                  that's great!`}
-                    </h1>
-                  </div>
-                  <div className="py-4 text-lg">
-                    <p>What about any Gross Domestic Value costs?</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 grid-rows-2 gap-5">
-                  <div className="w-4/5 mx-auto col-start-1 col-span-3 row-start-1">
+              <div className="h-full flex flex-col justify-start text-black font-medium tracking-wider leading-relaxed p-48">
+                <h1 className="text-2xl my-4">
+                  Holy Moly! You shelled out
+                  {" " + formatter.format(Number(values.purchasePrice))}, that's
+                  great!
+                </h1>
+                <span>
+                  Please, give me a number for both commercial and residential
+                  gross domestic value.
+                </span>
+                <span>These are both required.</span>
+                <div className="mt-12 grid grid-cols-4 grid-rows-2 gap-10">
+                  <div className="col-start-1 col-span-3 row-start-1 row-span-1">
                     <Field
                       name="gdvCommercial"
-                      as={NumberInputField}
+                      as={TextInputField}
+                      type="number"
                       label="GDV Commercial (GBP)"
                       error={errors.gdvCommercial}
                       touched={touched.gdvCommercial}
-                    >
-                      {errors.gdvCommercial && touched.gdvCommercial && (
-                        <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
-                          <ExclamationIcon className="h-6 w-6 mr-3" />
-                          {errors.gdvCommercial}
-                        </div>
-                      )}
-                    </Field>
+                    />
                   </div>
-                  <div className="w-4/5 mx-auto col-start-2 col-span-3 row-start-2">
+                  <div className="col-start-2 col-span-3 row-start-2 row-span-1">
                     <Field
                       name="gdvResidential"
-                      as={NumberInputField}
+                      as={TextInputField}
+                      type="number"
                       label="GDV Residential (GBP)"
                       error={errors.gdvResidential}
                       touched={touched.gdvResidential}
-                    >
-                      <div className="w-full flex justify-end">
-                        {!errors.gdvResidential &&
-                          touched.gdvResidential &&
-                          !errors.gdvCommercial &&
-                          touched.gdvCommercial && (
-                            <div
-                              onClick={incrementCurrentStep}
-                              className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
-                            >
-                              Next
-                            </div>
-                          )}
-                      </div>
-                      {errors.gdvResidential && touched.gdvResidential && (
-                        <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
-                          <ExclamationIcon className="h-6 w-6 mr-3" />
-                          {errors.gdvResidential}
+                    />
+                  </div>
+                  <div className="col-start-1 col-span-1 row-start-2 row-span-1">
+                    {!errors.gdvCommercial &&
+                      values.gdvCommercial &&
+                      !errors.gdvResidential &&
+                      values.gdvResidential && (
+                        <div
+                          onClick={incrementCurrentStep}
+                          className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer mt-6"
+                        >
+                          Next
                         </div>
                       )}
-                    </Field>
                   </div>
                 </div>
               </div>
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={4}>
-              <div className="h-full flex flex-col mt-6">
-                <div className="text-black font-medium tracking-wider mb-4">
+              <div className="h-full flex flex-col">
+                <div className="text-black font-medium tracking-wider">
                   <div className="py-4 text-2xl">
                     <h1>{`So, ${values.company}, just how long is this going to take?`}</h1>
                   </div>
@@ -273,7 +245,7 @@ const FormikSandbox = (): JSX.Element => {
                   >
                     <OptionsInputArray data={step4Options} />
                   </Field>
-                  {!errors.mobAndBuildPeriod && touched.mobAndBuildPeriod && (
+                  {!errors.mobAndBuildPeriod && values.mobAndBuildPeriod && (
                     <div
                       onClick={incrementCurrentStep}
                       className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
@@ -292,8 +264,8 @@ const FormikSandbox = (): JSX.Element => {
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={5}>
-              <div className="h-full flex flex-col mt-6">
-                <div className="text-black font-medium tracking-wider mb-4">
+              <div className="h-full flex flex-col">
+                <div className="text-black font-medium tracking-wider">
                   <div className="py-4 text-2xl">
                     <h1>{`Wow, ${values.mobAndBuildPeriod} months? This is starting to shape up!`}</h1>
                   </div>
@@ -307,7 +279,7 @@ const FormikSandbox = (): JSX.Element => {
                     touched={touched.exitStrategy}
                     options={step5Options}
                   >
-                    {!errors.exitStrategy && touched.exitStrategy && (
+                    {!errors.exitStrategy && values.exitStrategy && (
                       <div
                         onClick={incrementCurrentStep}
                         className="absolute right-0 -bottom-14 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
@@ -332,8 +304,8 @@ const FormikSandbox = (): JSX.Element => {
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={7}>
-              <h1 className="font-medium">Plans for future</h1>
-              <ul className="p-4">
+              <h1 className="font-bold">Plans for future</h1>
+              <ul className="p-8">
                 <li className="hover:text-pink-400 transition-all">
                   Remove Nav during form to keep focus
                 </li>
@@ -342,7 +314,7 @@ const FormikSandbox = (): JSX.Element => {
                 </li>
                 <li className="hover:text-pink-400 transition-all">
                   Add display for user inputs so that it can be monitored
-                  throughout
+                  throughout(?)
                 </li>
                 <li className="hover:text-pink-400 transition-all">
                   Input confirmation screen prior to submit
@@ -357,11 +329,11 @@ const FormikSandbox = (): JSX.Element => {
                   Transport user to location/page of first error
                 </li>
                 <li className="hover:text-pink-400 transition-all">
-                  Better buttons for form navigation
+                  Better buttons for form navigation - COMPLETE
                 </li>
                 <li className="hover:text-pink-400 transition-all">
                   Smart buttons for form nav (i.e. appear once touched & w/o
-                  errors)
+                  errors) - COMPLETE?
                 </li>
               </ul>
             </ModelDealStep>

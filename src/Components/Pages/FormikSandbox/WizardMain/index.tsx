@@ -1,3 +1,4 @@
+import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/outline";
 import { useEffect, useState, Children } from "react";
 
 type WizardMainProps = {
@@ -41,24 +42,23 @@ const WizardMain = ({
         className={`h-full bg-gray-200 bg-opacity-40 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative`}
       >
         {children}
-        <div className="flex justify-around items-center absolute bottom-10 w-full">
-          <div
-            onClick={decrementCurrentStep}
-            className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
-          >
-            Back
-          </div>
-          <input
-            type="submit"
-            className="h-14 w-28 rounded-md shadow-md cursor-pointer font-medium bg-white hover:bg-gray-200 active:bg-gray-300"
-            value={`${currentStep} / ${maxStep}`}
-            disabled={isSubmitting}
-          />
-          <div
-            onClick={incrementCurrentStep}
-            className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 rounded-md text-white font-medium shadow-md h-10 cursor-pointer"
-          >
-            Next
+        <div className="absolute right-8 bottom-8">
+          <div className="flex">
+            <div
+              onClick={decrementCurrentStep}
+              className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 text-white font-medium shadow-md h-10 w-10 cursor-pointer rounded-l-md"
+            >
+              <ArrowUpIcon className="h-6 w-6" />
+            </div>
+            <div className="flex justify-center items-center bg-white text-pink-600 font-medium shadow-md h-10 w-10 select-none">
+              {currentStep}
+            </div>
+            <div
+              onClick={incrementCurrentStep}
+              className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 text-white font-medium shadow-md h-10 w-10 cursor-pointer rounded-r-md"
+            >
+              <ArrowDownIcon className="h-6 w-6" />
+            </div>
           </div>
         </div>
       </form>
