@@ -6,10 +6,10 @@ import DashboardLayout from "../../Atoms/DashboardLayout";
 import WizardMain from "./WizardMain";
 import ModelDealStep from "../../Organisms/FormMain/ModelDealStep";
 import TextInputField from "./WizardMain/Components/Atoms/TextInputField";
-import SelectInputField from "./WizardMain/Components/Atoms/SelectInputField/index";
-import OptionsInputArray from "../../Organisms/FormMain/ModelDealStep2/SelectInput/OptionsInputArray";
 import { RadioInputGroup } from "./WizardMain/Components/Atoms/RadioInputGroup/index";
 import { ExclamationIcon } from "@heroicons/react/outline";
+import { NextSlideButton } from "./WizardMain/Components/Atoms/NextSlideButton";
+import { RadioOption } from "./WizardMain/Components/Atoms/RadioInputGroup/RadioOption";
 
 type FormValues = {
   purchasePrice: number | undefined;
@@ -18,18 +18,20 @@ type FormValues = {
   company: string | undefined;
   mobAndBuildPeriod: number | undefined;
   exitStrategy: string | undefined;
+  startDate: number | undefined;
+  endDate: number | undefined;
 };
 
-const step4Options = [
-  { label: "3 Months", value: 3 },
-  { label: "6 Months", value: 6 },
-  { label: "9 Months", value: 9 },
-  { label: "12 Months", value: 12 },
-  { label: "15 Months", value: 15 },
-  { label: "18 Months", value: 18 },
-  { label: "21 Months", value: 21 },
-  { label: "24 Months", value: 24 },
-];
+// const step4Options = [
+//   { label: "3 Months", value: 3 },
+//   { label: "6 Months", value: 6 },
+//   { label: "9 Months", value: 9 },
+//   { label: "12 Months", value: 12 },
+//   { label: "15 Months", value: 15 },
+//   { label: "18 Months", value: 18 },
+//   { label: "21 Months", value: 21 },
+//   { label: "24 Months", value: 24 },
+// ];
 
 const step5Options = [
   {
@@ -54,6 +56,19 @@ const FormikSandbox = (): JSX.Element => {
 
   const incrementCurrentStep = (): void => {
     if (currentStep < 7) setCurrentStep(currentStep + 1);
+  };
+
+  const decrementCurrentStep = (): void => {
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
+  };
+
+  const handleKeyDown = (e: any): void => {
+    if (e.key === "Enter") incrementCurrentStep();
+  };
+
+  const handleWheel = (e: any): void => {
+    if (e.deltaY < 0) decrementCurrentStep();
+    if (e.deltaY > 0) incrementCurrentStep();
   };
 
   const validate = (values: FormValues) => {
@@ -93,11 +108,25 @@ const FormikSandbox = (): JSX.Element => {
       errors.exitStrategy = "Required";
     }
 
+    if (!values.startDate) {
+      errors.startDate = "Required";
+    } else if (!values.endDate) {
+      errors.endDate = "Required";
+    } else {
+      const startDate = new Date(values.startDate).getTime();
+      const endDate = new Date(values.endDate).getTime();
+      if (startDate === endDate) {
+        errors.endDate = "They can't be on the same day!";
+      } else if (startDate > endDate) {
+        errors.endDate = "Your end date cannot be before the start date.";
+      }
+    }
+
     return errors;
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout onKeyDown={handleKeyDown} onWheel={handleWheel}>
       <Formik
         initialValues={{
           purchasePrice: undefined,
@@ -106,13 +135,23 @@ const FormikSandbox = (): JSX.Element => {
           company: undefined,
           mobAndBuildPeriod: undefined,
           exitStrategy: undefined,
+          startDate: undefined,
+          endDate: undefined,
         }}
         onSubmit={(data, { setSubmitting }) => {
           console.log(data);
         }}
         validate={validate}
       >
-        {({ values, errors, touched, isSubmitting, handleSubmit }) => (
+        {({
+          values,
+          errors,
+          touched,
+          isSubmitting,
+          handleSubmit,
+          handleBlur,
+          handleChange,
+        }) => (
           <WizardMain
             currentStep={currentStep}
             onSubmit={handleSubmit}
@@ -138,12 +177,7 @@ const FormikSandbox = (): JSX.Element => {
                     type="text"
                   />
                   {!errors.company && values.company && (
-                    <div
-                      onClick={incrementCurrentStep}
-                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer mt-6"
-                    >
-                      Next
-                    </div>
+                    <NextSlideButton handleClick={incrementCurrentStep} />
                   )}
                 </div>
               </div>
@@ -167,12 +201,7 @@ const FormikSandbox = (): JSX.Element => {
                     touched={touched.purchasePrice}
                   />
                   {!errors.purchasePrice && values.purchasePrice && (
-                    <div
-                      onClick={incrementCurrentStep}
-                      className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer mt-6"
-                    >
-                      Next
-                    </div>
+                    <NextSlideButton handleClick={incrementCurrentStep} />
                   )}
                 </div>
               </div>
@@ -216,12 +245,7 @@ const FormikSandbox = (): JSX.Element => {
                       values.gdvCommercial &&
                       !errors.gdvResidential &&
                       values.gdvResidential && (
-                        <div
-                          onClick={incrementCurrentStep}
-                          className="flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer mt-6"
-                        >
-                          Next
-                        </div>
+                        <NextSlideButton handleClick={incrementCurrentStep} />
                       )}
                   </div>
                 </div>
@@ -229,71 +253,93 @@ const FormikSandbox = (): JSX.Element => {
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={4}>
-              <div className="h-full flex flex-col">
-                <div className="text-black font-medium tracking-wider">
-                  <div className="py-4 text-2xl">
-                    <h1>{`So, ${values.company}, just how long is this going to take?`}</h1>
+              <div className="h-full flex flex-col justify-start text-black font-medium tracking-wider leading-relaxed p-48">
+                <h1 className="text-2xl my-4">
+                  So, {values.company}, just how long is this going to take?
+                </h1>
+                <span>
+                  I'm here to help you make a model of your investment.
+                </span>
+                <span>
+                  I need to know the name of your business to get started:
+                </span>
+                <div className="mt-12">
+                  <div className="flex justify-between w-1/2">
+                    <div className="w-48">
+                      <Field
+                        name="startDate"
+                        as={TextInputField}
+                        type="date"
+                        error={errors.startDate}
+                        touched={touched.startDate}
+                        label="Start Date"
+                      />
+                    </div>
+                    {!errors.startDate && values.startDate && (
+                      <div className="w-48">
+                        <Field
+                          name="endDate"
+                          as={TextInputField}
+                          type="date"
+                          error={errors.endDate}
+                          touched={touched.endDate}
+                          label="End Date"
+                          minValue={values.startDate}
+                        />
+                      </div>
+                    )}
                   </div>
-                </div>
-                <div className="w-4/5 mx-auto mt-4 relative">
-                  <Field
-                    name="mobAndBuildPeriod"
-                    label="Mobilisation and Build Period"
-                    as={SelectInputField}
-                    error={errors.mobAndBuildPeriod}
-                    touched={touched.mobAndBuildPeriod}
-                  >
-                    <OptionsInputArray data={step4Options} />
-                  </Field>
-                  {!errors.mobAndBuildPeriod && values.mobAndBuildPeriod && (
-                    <div
-                      onClick={incrementCurrentStep}
-                      className="absolute top-16 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
-                    >
-                      Next
-                    </div>
-                  )}
-                  {errors.mobAndBuildPeriod && touched.mobAndBuildPeriod && (
-                    <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6 ">
-                      <ExclamationIcon className="h-6 w-6 mr-3" />
-                      {errors.mobAndBuildPeriod}
-                    </div>
-                  )}
+                  {!errors.startDate &&
+                    values.startDate &&
+                    !errors.endDate &&
+                    values.endDate && (
+                      <NextSlideButton handleClick={incrementCurrentStep} />
+                    )}
                 </div>
               </div>
             </ModelDealStep>
 
             <ModelDealStep currentStep={currentStep} targetStep={5}>
-              <div className="h-full flex flex-col">
-                <div className="text-black font-medium tracking-wider">
-                  <div className="py-4 text-2xl">
-                    <h1>{`Wow, ${values.mobAndBuildPeriod} months? This is starting to shape up!`}</h1>
-                  </div>
-                  <h2>Do you have an exit strategy in mind?</h2>
-                </div>
-                <div className="w-3/5 mx-auto mt-4">
-                  <Field
-                    name="exitStrategy"
-                    as={RadioInputGroup}
-                    error={errors.exitStrategy}
-                    touched={touched.exitStrategy}
-                    options={step5Options}
-                  >
-                    {!errors.exitStrategy && values.exitStrategy && (
-                      <div
-                        onClick={incrementCurrentStep}
-                        className="absolute right-0 -bottom-14 flex justify-center items-center bg-pink-600 hover:bg-pink-700 active:bg-pink-800 w-20 text-white font-medium shadow-md h-10 cursor-pointer"
-                      >
-                        Next
-                      </div>
-                    )}
+              <div className="h-full flex flex-col justify-start text-black font-medium tracking-wider leading-relaxed p-48">
+                <h1 className="text-2xl my-4">
+                  Gee whiz, {} months, that's a long one! Now, I need to know
+                  about your exit strategy...
+                </h1>
+                <span>This is an important one!</span>
+                <div className="mt-12">
+                  <div className="text-2xl text-white font-medium flex justify-center">
+                    <Field
+                      name="exitStrategy"
+                      as={RadioInputGroup}
+                      error={errors.exitStrategy}
+                      touched={touched.exitStrategy}
+                    >
+                      {Array.isArray(step5Options) &&
+                        step5Options.map((option) => (
+                          <div className="h-20 w-40 mx-auto">
+                            <RadioOption
+                              name="exitStrategy"
+                              label={option.label}
+                              value={option.value}
+                              onBlur={handleBlur}
+                              onChange={handleChange}
+                              parentValue={values.exitStrategy}
+                            />
+                          </div>
+                        ))}
+                    </Field>
                     {errors.exitStrategy && touched.exitStrategy && (
-                      <div className="absolute text-red-600 font-medium flex pl-3 pt-2 h-6">
+                      <div className="absolute text-red-600 flex font-medium pt-2 h-6 ">
                         <ExclamationIcon className="h-6 w-6 mr-3" />
                         {errors.exitStrategy}
                       </div>
                     )}
-                  </Field>
+                  </div>
+                  {!errors.exitStrategy && values.exitStrategy && (
+                    <div className="text-base flex justify-center">
+                      <NextSlideButton handleClick={incrementCurrentStep} />
+                    </div>
+                  )}
                 </div>
               </div>
             </ModelDealStep>
@@ -334,6 +380,16 @@ const FormikSandbox = (): JSX.Element => {
                 <li className="hover:text-pink-400 transition-all">
                   Smart buttons for form nav (i.e. appear once touched & w/o
                   errors) - COMPLETE?
+                </li>
+                <li className="hover:text-pink-400 transition-all">
+                  Gain a better understanding of what makes components resuable
+                </li>
+                <li className="pl-4 hover:text-pink-400 transition-all">
+                  Styled Components vs Functional Components
+                </li>
+                <li className="pl-4 hover:text-pink-400 transition-all">
+                  Test Input components to see if styles/sizing is accidentally
+                  enforced
                 </li>
               </ul>
             </ModelDealStep>

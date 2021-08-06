@@ -2,11 +2,21 @@ import Nav from "../../Organisms/Nav";
 
 type DashboardLayoutProps = {
   children: JSX.Element | JSX.Element[];
+  onKeyDown?: any;
+  onWheel?: any;
 };
 
-const DashboardLayout = ({ children }: DashboardLayoutProps): JSX.Element => {
+const DashboardLayout = ({
+  children,
+  onKeyDown: handleKeyDown,
+  onWheel: handleWheel,
+}: DashboardLayoutProps): JSX.Element => {
   return (
-    <main className="flex flex-row h-screen">
+    <main
+      className="flex flex-row h-screen"
+      onKeyDown={handleKeyDown}
+      onWheel={handleWheel}
+    >
       <Nav />
       {children}
     </main>

@@ -1,7 +1,9 @@
+import { CheckCircleIcon } from "@heroicons/react/outline";
+
 type RadioOptionProps = {
   name: string;
   value: string;
-  parentValue: string;
+  parentValue: string | undefined;
   label?: string;
   onChange: any;
   onBlur: any;
@@ -16,10 +18,10 @@ export const RadioOption = ({
   onChange,
 }: RadioOptionProps): JSX.Element => {
   return (
-    <label
-      htmlFor={value}
-      className="flex items-center group cursor-pointer opacity-60 hover:opacity-90 transition-all duration-300 focus-within:opacity-100"
-    >
+    <label htmlFor={value} className="group cursor-pointer relative">
+      {parentValue === value && (
+        <CheckCircleIcon className="w-8 h-8 text-pink-500 absolute z-50" />
+      )}
       <input
         type="radio"
         name={name}
@@ -27,11 +29,12 @@ export const RadioOption = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="absolute opacity-0 peer cursor-pointer"
+        className="hidden peer"
         checked={parentValue === value}
       />
-      <div className="h-5 w-5 rounded-full border-pink-700 border-2 group-hover:bg-pink-300 inline-block mr-2 peer-checked:bg-pink-500 peer-active:bg-pink-600 cursor-pointer"></div>
-      {label}
+      <div className="h-full flex justify-center items-center bg-pink-500 bg-opacity-90 rounded-sm peer-checked:bg-transparent peer-checked:text-pink-500 peer-checked:ring-pink-600 peer-checked:ring-2 transition-all">
+        {label}
+      </div>
     </label>
   );
 };

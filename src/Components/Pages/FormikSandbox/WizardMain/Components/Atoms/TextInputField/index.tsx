@@ -9,6 +9,7 @@ type TextInputFieldProps = {
   onBlur?: any;
   error?: string | undefined;
   touched?: boolean | undefined;
+  minValue?: string | undefined;
 };
 
 const TextInputField = ({
@@ -20,6 +21,7 @@ const TextInputField = ({
   onChange,
   onBlur,
   type,
+  minValue,
 }: TextInputFieldProps): JSX.Element => {
   const errorBorder =
     error && touched
@@ -44,6 +46,7 @@ const TextInputField = ({
             onChange={onChange}
             onBlur={onBlur}
             value={value}
+            min={minValue}
           />
           <label
             className="absolute -top-4 text-sm peer-placeholder-shown:text-xl peer-placeholder-shown:font-normal peer-placeholder-shown:opacity-80 peer-placeholder-shown:top-4 transition-all"

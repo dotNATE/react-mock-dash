@@ -35,8 +35,14 @@ const WizardMain = ({
 
   return (
     <div
-      className={`w-full ${bgClass} selection:bg-pink-600 selection:text-white`}
+      className={`w-full ${bgClass} selection:bg-pink-600 selection:text-white relative`}
     >
+      <div
+        className="absolute h-2 bg-pink-600 bg-opacity-60 transition-all"
+        style={{
+          width: (100 / maxStep) * currentStep + "%",
+        }}
+      ></div>
       <form
         onSubmit={onSubmit}
         className={`h-full bg-gray-200 bg-opacity-40 backdrop-filter focus-within:backdrop-blur-sm focus-within:backdrop-grayscale transition duration-700 relative`}
