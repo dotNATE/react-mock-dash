@@ -42,6 +42,14 @@ const step5Options = [
     value: "refinance",
     label: "Refinance",
   },
+  {
+    value: "hold",
+    label: "Hold",
+  },
+  {
+    value: "other",
+    label: "Other",
+  },
 ];
 
 const formatter = new Intl.NumberFormat("en-GB", {
@@ -110,6 +118,8 @@ const FormikSandbox = (): JSX.Element => {
 
     if (!values.startDate) {
       errors.startDate = "Required";
+    } else if (new Date(values.startDate).getTime() < new Date().getTime()) {
+      errors.startDate = "Your project has to start in the future!";
     } else if (!values.endDate) {
       errors.endDate = "Required";
     } else {

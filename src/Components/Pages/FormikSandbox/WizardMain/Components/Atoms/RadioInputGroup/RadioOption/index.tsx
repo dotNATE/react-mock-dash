@@ -32,7 +32,7 @@ export const RadioOption = ({
         className="hidden peer"
         checked={parentValue === value}
       />
-      <div className="h-full flex justify-center items-center bg-pink-500 bg-opacity-90 rounded-sm peer-checked:bg-transparent peer-checked:text-pink-500 peer-checked:ring-pink-600 peer-checked:ring-2 transition-all">
+      <div className="h-full flex justify-center items-center bg-pink-600 peer-checked:bg-transparent peer-checked:text-pink-600 peer-checked:ring-pink-700 peer-checked:ring-2 transition-all">
         {label}
       </div>
     </label>

@@ -40,7 +40,7 @@ const WizardMain = ({
       <div
         className="absolute h-2 bg-pink-600 bg-opacity-60 transition-all"
         style={{
-          width: (100 / maxStep) * currentStep + "%",
+          width: (100 / (maxStep - 1)) * (currentStep - 1) + "%",
         }}
       ></div>
       <form
